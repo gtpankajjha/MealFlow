@@ -1,0 +1,21 @@
+/* For Chrome, Safari, and Opera browsers */
+::-webkit-scrollbar {
+    width: 0px;
+    /* Adjust the width as desired */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Replace "your-color" with your desired color */
+}
+
+/* For Firefox browser */
+::-moz-scrollbar {
+    width: 10px;
+    /* Adjust the width as desired */
+}
+
+::-moz-scrollbar-thumb {
+    background-color: #your-color;
+    /* Replace "your-color" with your desired color */
+}

@@ -1,0 +1,263 @@
+.container {
+    background-color: #fff;
+    padding: 5px 0;
+}
+.buttonDesign{  
+ height: 50px;
+ width: 20%;
+ border: none;
+ background-color: #e9901b;
+ margin-top: 3%;
+ color: #fff;
+ margin-bottom: 3%;
+            }
+        
+
+.scrollContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+        scrollbar-width: none;
+    padding: 10px 0;         
+}
+.scrollContainer::-webkit-scrollbar {
+    display: none;
+}
+.ul {
+    list-style-type: none;
+}
+
+.unselected{
+    color: #eeeeee;
+    height: 25px;
+    width: 25px;
+    background-color: #eeeeee;
+    border-radius: 3px;
+}
+
+.table_td{
+    border: 1px solid gray;
+    /* width: 5%; */
+    color: #000;
+    padding: 7px;
+    
+   
+}
+.itemContainer {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0px;
+    margin-left: 20px;
+    margin-right: 5px;
+    padding: 7px 10px;
+    width: 255px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center;
+    text-align: center; */
+    cursor: pointer;
+}
+.share_image {
+    height: 40px;
+    width: 120px;
+    margin-left: 10px;
+}
+
+.congrats_history{
+    color: #000;
+            font-size: 20px;
+         text-align: center;
+            font-weight: 500;
+}
+.input_design {
+    height: 40px;
+    width: 100%;
+    border: 1px solid gray;
+    padding: 10px;
+    outline: "none";
+    margin-bottom: 2%;
+
+
+}
+.selected {
+    border-color: #80b53b;
+    border-width: 3px;
+}
+
+.planContainer {
+    width: 100%;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+   
+    align-items: center;
+}
+
+.planText {
+    color: #000;
+    font-family: Poppins-Medium;
+    font-size: 14px;
+    text-align: center;
+}
+
+.perceContainer {
+    /* background-color: #eba447; */
+    border-radius: 16px;
+    padding: 3px 10px;
+    margin-left: auto;
+}
+
+.perceDiscount {
+    color: #090808;
+    font-weight: 500;
+    font-size: 24px;
+    margin-left: 20%;
+   
+}
+.perceDiscountText {
+    color: #38b4a8;
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 20%;
+
+}
+.fancyCheck {
+    display: block;
+    /* position: absolute; */
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.horiLine {
+    background-color: #80b53b33;
+    height: 1px;
+    margin: 8px 0;
+    width: 100%;
+}
+.modal_container{
+padding: 10px;
+display: flex;
+flex-direction: column;
+}
+.congrats_img{
+    height: 64px;
+            width: 64px;
+            margin-left: 40%;
+            margin-top: 5%;
+}
+
+.modal_proceed{
+    margin-left: 30%;
+            margin-top: 2%;
+            height: 45px;
+            width: 40%;
+            border: none;
+            background-color: #e9901b;
+            margin-top: 3%;
+            color: #fff;
+            outline: none;
+}
+
+.perMealPriceText {
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    align-self: flex-start;
+    /* margin-right: 50%; */
+}
+
+.perMealText {
+    color: #3a3a3a;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.totalMealText {
+    color: #8f8f8f;
+    font-size: 8px;
+    display: flex;
+}
+
+.deliveryImage{
+
+        width: 22px;
+        vertical-align: 0px;
+        margin-right: 10px;  
+       
+}
+
+.deliveryText{
+    color: #000;
+    font-size: 15px;
+
+}
+.freeDeliveryContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    margin-bottom: 0px;
+}
+
+@media (min-width: 268px) and (max-width: 768px) {
+.itemContainer {
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0px;
+        margin-left: 20px;
+        margin-right: 5px;
+        padding: 7px 10px;
+        width: 227px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* align-items: center;
+    text-align: center; */
+        cursor: pointer;
+    }
+        .congrats_img {
+            height: 64px;
+            width: 64px;
+            margin-left: 40%;
+            margin-top: 5%;
+        }
+
+        .share_image{
+            height: 40px; width: 100px;
+            margin-left: 10px;
+        }
+
+        .buttonDesign {
+            height: 40px;
+            width: 30%;
+            border: none;
+            background-color: #e9901b;
+            margin-top: 3%;
+            color: #fff;
+            margin-bottom: 3%;
+        }
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+    .itemContainer {
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 0px;
+            margin-left: 20px;
+            margin-right: 5px;
+            padding: 7px 10px;
+            width: 247px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* align-items: center;
+        text-align: center; */
+            cursor: pointer;
+        }
+    
+}

@@ -1,0 +1,46 @@
+.container {
+    margin-top: 25px;
+}
+
+.title-text {
+    color: #000000;
+    font-family: 'Poppins-Medium';
+}
+
+.required {
+    color: #E85B5B;
+}
+
+.option-container {
+    background-color: #F8FBF5;
+    border-radius: 6px;
+    height: 38px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    width: 170px;
+    display: flex;
+}
+
+.item-container {
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    height: 28px;
+    justify-content: center;
+    margin-right: 10px;
+    width: 70px;
+}
+
+.item-container.selected {
+    background-color: #80B53B;
+}
+
+.item-container-text {
+    color: #000000;
+    font-family: 'Poppins';
+}
+
+.item-container-text.selected-text {
+    color: #FFFFFF;
+}
+
