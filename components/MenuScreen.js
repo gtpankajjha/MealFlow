@@ -44,7 +44,7 @@ const MenuScreen = () => {
   };
 
   useEffect(() => {
-    fetch("https://dev.dashboard.toneop.net/toneopeats/toneopeats_get_menu")
+    fetch("http://localhost:5000/api/menu")
       .then((response) => response.json())
       .then((json) => {
         setData(json.data);
