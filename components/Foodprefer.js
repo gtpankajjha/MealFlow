@@ -1,46 +1,38 @@
 import React from "react";
 import styles from "../styles/Preference.module.css";
 
-const Foodprefer = ({ prefrenceOptions, prefrenceItem, prefrenceHandler }) => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-    }}
-  >
-    {prefrenceOptions.map((item, index) => {
-      let buttonText;
-      if (item === "Veg") {
-        buttonText = "Veg";
-      } else {
-        buttonText = "Non-Veg";
-      }
-      return (
-        <div style={{ marginLeft: "10px" }} key={index}>
-          {" "}
+const Foodprefer = ({
+  prefrenceOptions,
+  prefrenceItem,
+  prefrenceHandler,
+}) => {
+  return (
+    <div className={styles.preferenceContainer}>
+      {prefrenceOptions.map((item) => {
+        const isSelected = prefrenceItem[item];
+
+        const buttonText =
+          item === "Veg" ? "Veg" : "Non-Veg";
+
+        return (
           <button
-            key={index}
-            className={styles.button_con}
-            style={{
-              color: prefrenceItem[item] ? "#fff" : "black",
-              backgroundColor: prefrenceItem[item] ? "#80B53B" : "white",
-              outline: "none",
-            }}
-            onClick={() => prefrenceHandler(item)}
+            type="button"
+            key={item}
+            className={`${styles.preferenceButton} ${
+              isSelected
+                ? styles.preferenceButtonActive
+                : ""
+            }`}
+            onClick={() =>
+              prefrenceHandler(item)
+            }
           >
-            <span
-              style={{
-                color: prefrenceItem[item] ? "#fff" : "black",
-                border: "none",
-              }}
-            >
-              {buttonText}
-            </span>
+            {buttonText}
           </button>
-        </div>
-      );
-    })}
-  </div>
-);
+        );
+      })}
+    </div>
+  );
+};
 
 export default Foodprefer;

@@ -98,7 +98,7 @@ const MenuItemDetails = ({ item, mealItem }) => {
                 >
                   {/* FOOD IMAGE */}
                   <div className={styles.cardImageWrapper}>
-                    <div className={styles.dietIcon}>
+                    {/* <div className={styles.dietIcon}>
                       <img
                         src={
                           food.diet_preference === "Veg"
@@ -107,7 +107,7 @@ const MenuItemDetails = ({ item, mealItem }) => {
                         }
                         alt={food.diet_preference}
                       />
-                    </div>
+                    </div> */}
 
                     <img
                       src={`${IMAGE_URL}${food.image}`}
