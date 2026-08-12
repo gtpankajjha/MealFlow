@@ -1,223 +1,154 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/MenuScreen.module.css";
 import MenuItemDetails from "./MenuItemDetails";
-import useApi from "../components/useApi";
 
-const dishes = [
-  {
-    id: "1",
-    name: "Salad Bowls",
-    imagePath: "https://toneopeats.com/public/img/supersalad.webp",
-  },
-  {
-    id: "2",
-    name: "Grills",
-    imagePath: "https://toneopeats.com/public/img/ourgrills.webp",
-  },
-  {
-    id: "3",
-    name: "Smoothie Bowl",
-    imagePath: "https://toneopeats.com/public/img/smoothiebowl.webp",
-  },
-  {
-    id: "4",
-    name: "Juice",
-    imagePath: "https://toneopeats.com/public/img/healthyjuice.webp",
-  },
-  {
-    id: "5",
-    name: "Meal Bowl",
-    imagePath: "https://toneopeats.com/public/img/Meal-Bowl.svg",
-  },
-];
+const API_URL = "http://localhost:5000/api/menu";
+const IMAGE_URL = "http://localhost:5000/images";
+
+const getImageUrl = (image) => {
+  if (!image) return "";
+
+  // Already a complete URL
+  if (image.startsWith("http://") || image.startsWith("https://")) {
+    return image;
+  }
+
+  // Already starts with /images
+  if (image.startsWith("/images/")) {
+    return `http://localhost:5000${image}`;
+  }
+
+  return `${IMAGE_URL}/${image.replace(/^\/+/, "")}`;
+};
 
 const MenuScreen = () => {
-  //   const [dishes, setDishes] = useState(null);
-  const [activeId, setActiveId] = useState([]);
-  const [selectedId, setSelectedId] = useState([]);
-  const [data, setData] = useState(null);
-  const [mealData, setMealData] = useState();
-
-  const handleIdClick = (item) => {
-    setSelectedId(item);
-    setMealData(item.food);
-  };
+  const [data, setData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/menu")
-      .then((response) => response.json())
-      .then((json) => {
-        setData(json.data);
-        setActiveId(json.data);
-        setSelectedId(json.data);
-        setMealData(json.data[0].food);
-      })
-      .catch((error) => console.error(error));
+    const fetchMenu = async () => {
+      try {
+        setLoading(true);
+
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch menu");
+        }
+
+        const json = await response.json();
+
+        const menuData = json?.data || [];
+
+        setData(menuData);
+
+        // Select first category automatically
+        if (menuData.length > 0) {
+          setSelectedCategory(menuData[0]);
+        }
+      } catch (err) {
+        console.error("Menu API error:", err);
+        setError("Unable to load menu. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenu();
   }, []);
 
-  console.log("response of new api", data);
+  const handleCategoryClick = (item) => {
+    setSelectedCategory(item);
+  };
 
-  const filteredDishes = data?.filter((item) => item.id === selectedId.id);
-  //   const filteredDishes = value?.filter((item) => item.id === selectedId.id);
+  if (loading) {
+    return (
+      <div className={styles.menuLoading}>
+        <p>Loading menu...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.menuError}>
+        <p>{error}</p>
+      </div>
+    );
+  }
 
   return (
-    <div
-      className={styles.menusec}
-      style={{
-        width: "auto",
-        backgroundColor: "none",
-      }}
-    >
-      <div className={styles.menutabs_div}>
-        <div className={styles.menutabs_div_scroll}>
-          {data?.map((item, index) => {
-            const isActive = item.id === selectedId.id;
-            const buttonClassName = isActive ? styles.active : styles.button;
-            const Image_URL = "https://toneop.s3.ap-south-1.amazonaws.com/";
-            return (
-              <li key={index} style={{ listStyle: "none", marginLeft: "15px" }}>
-                <button
-                  //   className={selectedId ? styles.button : styles.active}
-                  className={styles.button}
-                  data-toggle="tab"
-                  onClick={() => handleIdClick(item)}
-                  style={{
-                    outline: "none",
-                    border:
-                      item.id === selectedId.id
-                        ? "1px solid rgb(128,181,59)"
-                        : "1px solid RGB(238,243,232)",
-                  }}
-                >
-                  <img
-                    src={`${Image_URL}${item.image}`}
-                    //   alt={item.name}
-                    className={styles.menutabs_img}
-                  />
-                  {item.name}
-                </button>
-              </li>
-            );
-          })}
-        </div>
+    <section className={styles.menusec}>
+      {/* =========================
+          PAGE HEADER
+      ========================= */}
+      <div className={styles.menuHeader}>
+        <h1>Our Menu</h1>
+
+        <p>
+          Our Meals Contain Only 5 gm Olive Oil
+          <br />
+          &amp; Natural Sweeteners.
+        </p>
       </div>
-      {selectedId && (
+
+      {/* =========================
+          CATEGORY NAVIGATION
+      ========================= */}
+      <div className={styles.menutabs_div}>
+  <div className={styles.menutabs_div_scroll}>
+    {data?.map((item) => {
+      const isActive = selectedCategory?.id === item.id;
+
+      const Image_URL =
+        "https://toneop.s3.ap-south-1.amazonaws.com/";
+
+      return (
+        <li
+          key={item.id}
+          style={{
+            listStyle: "none",
+            margin: 0,
+            flexShrink: 0,
+          }}
+        >
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => handleCategoryClick(item)}
+            style={{
+              outline: "none",
+              border: isActive
+                ? "1px solid rgb(128,181,59)"
+                : "1px solid rgb(238,243,232)",
+            }}
+          >
+            <img
+              src={`${Image_URL}${item.image}`}
+              alt={item.name}
+              className={styles.menutabs_img}
+            />
+
+            <span>{item.name}</span>
+          </button>
+        </li>
+      );
+    })}
+  </div>
+</div>
+      {/* =========================
+          SELECTED CATEGORY
+      ========================= */}
+      {selectedCategory && (
         <MenuItemDetails
-          item={selectedId}
-          filteredDishes={filteredDishes}
-          mealItem={mealData}
+          item={selectedCategory}
+          mealItem={selectedCategory.food || []}
         />
       )}
-    </div>
+    </section>
   );
 };
 
 export default MenuScreen;
-
-//import React, { useState, useEffect } from "react";
-// import styles from "../styles/MenuScreen.module.css";
-// import MenuItemDetails from "./MenuItemDetails";
-// import useApi from "../components/useApi";
-
-// const dishes = [
-//   {
-//     id: 1,
-//     name: "Salad Bowls",
-//     imagePath: "https://toneopeats.com/public/img/supersalad.webp",
-//   },
-//   {
-//     id: 2,
-//     name: "Grills",
-//     imagePath: "https://toneopeats.com/public/img/ourgrills.webp",
-//   },
-//   {
-//     id: 3,
-//     name: "Smoothie Bowl",
-//     imagePath: "https://toneopeats.com/public/img/smoothiebowl.webp",
-//   },
-//   {
-//     id: 4,
-//     name: "Juice",
-//     imagePath: "https://toneopeats.com/public/img/healthyjuice.webp",
-//   },
-//   {
-//     id: 5,
-//     name: "Meal Bowl",
-//     imagePath: "https://toneopeats.com/public/img/Meal-Bowl.svg",
-//   },
-// ];
-
-// const MenuScreen = () => {
-//   //   const [dishes, setDishes] = useState(null);
-//   const [selectedId, setSelectedId] = useState(dishes[0]);
-//   const [data, setData] = useState(null);
-//   const [mealData, setMealData] = useState();
-
-//   const handleIdClick = (item) => {
-//     setSelectedId(item);
-//     setMealData(item.food);
-//   };
-
-//   const {
-//     data: value,
-//     loading,
-//     error,
-//   } = useApi("https://dev.dashboard.toneop.net/toneopeats/toneopeats_get_menu");
-
-//   useEffect(() => {
-//     fetch("https://dev.dashboard.toneop.net/toneopeats/toneopeats_get_menu")
-//       .then((response) => response.json())
-//       .then((json) => {
-//         setData(json.data);
-//         setSelectedId(json.data[0]);
-//         setMealData(json.data[0].food);
-//       })
-//       .catch((error) => console.error(error));
-//   }, []);
-
-//   //   console.log("response of new api", mealData);
-
-//   const filteredDishes = dishes?.filter((item) => item.id === selectedId.id);
-//   //   const filteredDishes = value?.filter((item) => item.id === selectedId.id);
-
-//   return (
-//     <div
-//       className={styles.menusec}
-//       style={{
-//         width: "auto",
-//         backgroundColor: "none",
-//       }}
-//     >
-//       <div className={styles.menutabs_div}>
-//         <div className={styles.menutabs_div_scroll}>
-//           {dishes?.map((item, index) => (
-//             <div key={index} className={styles.menutabs_div_box}>
-//               <button
-//                 className={selectedId ? styles.button : styles.active}
-//                 data-toggle="tab"
-//                 onClick={() => handleIdClick(item)}
-//                 style={{ outline: "none" }}
-//               >
-//                 <img
-//                   src={item.imagePath}
-//                   //   alt={item.name}
-//                   className={styles.menutabs_img}
-//                 />
-//                 {item.name}
-//               </button>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//       {selectedId && (
-//         <MenuItemDetails
-//           item={selectedId}
-//           filteredDishes={filteredDishes}
-//           mealItem={mealData}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default MenuScreen;

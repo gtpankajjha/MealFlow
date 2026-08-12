@@ -1,38 +1,24 @@
 /* ================================
-   MAIN MENU SECTION
-================================ */
-
-.menusec {
-  margin-top: 52px;
-  padding-top: 160px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* ================================
    CATEGORY TABS
 ================================ */
 
 .menutabs_div {
+  width: 100%;
   margin-top: 13px;
 }
 
 .menutabs_div_scroll {
+  width: 100%;
+
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+
   gap: 12px;
 
-  width: 100%;
-  padding: 18px 20px;
+  padding: 15px 20px 20px;
 
-  background-color: #f8fbf5;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.03);
-
-  position: fixed;
-  top: 65px;
-  left: 0;
-  z-index: 10;
+  background-color: #ffffff;
 
   box-sizing: border-box;
 
@@ -47,82 +33,79 @@
   display: none;
 }
 
-.menutabs_div_scroll li {
-  list-style: none;
-  margin: 0 !important;
-  flex-shrink: 0;
-}
+/* Category button */
 
 .button {
+  width: 135px;
+  min-width: 135px;
+  height: 125px;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
-  width: 160px;
-  height: 90px;
-
-  padding: 6px 10px;
+  padding: 5px;
 
   border: 1px solid #eef3e8;
-  border-radius: 11px;
+  border-radius: 0;
 
   background-color: #fff;
 
-  color: #8f8f8f;
+  color: #3a3a3a;
+
   font-size: 14px;
   font-weight: 500;
 
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.07);
-
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  box-shadow: none;
+
+  box-sizing: border-box;
+
+  white-space: normal;
 }
 
 .button:hover {
-  border-color: #80b53b !important;
+  color: #80b53b;
 }
+
+/* Category image */
 
 .menutabs_img {
   display: block;
-  width: 50px;
-  height: 50px;
 
-  margin: 0 auto 5px;
+  width: 85px;
+  height: 85px;
+
+  margin: 0 auto 7px;
 
   object-fit: contain;
+
+  flex-shrink: 0;
 }
 
-/* ================================
-   FOOD SECTION
-================================ */
+/* Category name */
 
-.foodcontainer {
-  width: 83%;
-  margin-left: auto;
-  margin-right: auto;
+.button span {
+  display: block;
 
-  background-color: #fff;
-
-  box-sizing: border-box;
-}
-
-.menuinnerBox {
   width: 100%;
 
-  border: 1px solid #eef3e8;
-  padding: 15px;
+  text-align: center;
 
-  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 18px;
 }
+/* ================================
+   FOOD CARD GRID
+================================ */
 
-/*
-IMPORTANT:
-React uses styles.menuUl
-not styles.menuUL
-*/
 .menuUl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
   width: 100%;
   margin: 0;
   padding: 0;
@@ -130,238 +113,449 @@ not styles.menuUL
   list-style: none;
 }
 
-/* ================================
-   VEG / NON VEG
-================================ */
-
-.avntype {
-  text-align: center;
-
-  min-height: 50px;
-
-  border-bottom: 1px solid #eef3e8;
-
-  margin-bottom: 20px;
-  padding: 0;
-
-  box-sizing: border-box;
-}
-
-/* ================================
-   FOOD CARD
-================================ */
-
 .menuDatali {
   width: 100%;
 
-  margin: 0 0 15px 0;
-  padding: 20px;
+  margin: 0;
+  padding: 24px;
 
-  border: 1px solid #eef3e8;
-  border-radius: 15px;
-
-  box-sizing: border-box;
-
-  display: flex;
-  align-items: flex-start;
-  gap: 25px;
-
-  position: relative;
+  border: 1px solid #e4e8df;
+  border-radius: 18px;
 
   background: #fff;
 
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+  box-sizing: border-box;
+
+  display: block;
+
+  transition: all 0.25s ease;
+
+  overflow: hidden;
 }
 
 .menuDatali:hover {
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+  border-color: #80b53b;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+  transform: translateY(-2px);
 }
 
 /* ================================
    FOOD IMAGE
 ================================ */
 
-.menuImg {
-  width: 190px;
-  min-width: 190px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.cardImageWrapper {
+  width: 100%;
+  height: 230px;
 
   position: relative;
+
+  overflow: hidden;
+
+  border-radius: 15px;
+
+  background: #f5f5f5;
+
+  margin-bottom: 18px;
 }
 
-.imageContainer {
-  width: 180px;
-  height: 150px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.imageContainer img {
+.cardFoodImage {
   width: 100%;
   height: 100%;
 
-  object-fit: cover;
-
-  border-radius: 8px;
-
   display: block;
+
+  object-fit: cover;
 }
 
-.proimgTag {
+.dietIcon {
   position: absolute;
 
-  left: 0;
-  top: 0;
+  top: 10px;
+  left: 10px;
 
   width: 22px;
   height: 22px;
 
   z-index: 2;
+
+  background: #fff;
+
+  padding: 2px;
+
+  border-radius: 4px;
+}
+
+.dietIcon img {
+  width: 100%;
+  height: 100%;
 }
 
 /* ================================
-   FOOD INFORMATION
+   FOOD CONTENT
 ================================ */
 
 .menuData {
-  flex: 1;
-  min-width: 0;
+  width: 100%;
+}
+
+.menuLabel_title {
+  margin: 0 0 8px;
+
+  color: #555;
+
+  font-size: 21px;
+  line-height: 1.35;
+
+  font-weight: 600;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.menuDesp {
+  margin: 0;
+
+  color: #8f8f8f;
+
+  font-size: 15px;
+
+  line-height: 1.65;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+/* ================================
+   READ MORE
+================================ */
+
+.readMoreButton,
+.nutritionalButton {
+  border: none;
+
+  background: transparent;
+
+  padding: 0;
+
+  margin-top: 8px;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.readMoreButton {
+  color: #0085ff;
+}
+
+.nutritionalButton {
+  color: #000;
+  font-weight: 600;
+
+  display: block;
+}
+
+.readMoreButton span,
+.nutritionalButton span {
+  margin-left: 8px;
+
+  font-size: 20px;
+
+  vertical-align: middle;
+}
+
+.nutritionalButton span {
+  color: #80b53b;
+}
+
+/* ================================
+   NO ITEMS
+================================ */
+
+.noItems {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  padding: 50px;
+
+  color: #777;
+
+  font-size: 18px;
+}
+
+/* ================================
+   MODAL OVERLAY
+================================ */
+
+.modalOverlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  background: rgba(0, 0, 0, 0.55);
 
   display: flex;
-  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+}
+
+/* ================================
+   MODAL
+================================ */
+
+.nutritionModal {
+  position: relative;
+
+  width: 900px;
+  max-width: 95vw;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #fff;
+
+  border-radius: 20px;
+
+  padding: 28px 55px 35px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* ================================
+   MODAL CLOSE
+================================ */
+
+.modalClose {
+  position: absolute;
+
+  right: 18px;
+  top: 16px;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #eeeeee;
+
+  color: #777;
+
+  font-size: 25px;
+
+  line-height: 30px;
+
+  cursor: pointer;
+}
+
+/* ================================
+   MODAL TITLE
+================================ */
+
+.modalTitle {
+  text-align: center;
+
+  margin: 5px 0 25px;
+
+  font-size: 26px;
+
+  font-weight: 600;
+
+  color: #111;
+}
+
+/* ================================
+   MODAL FOOD IMAGE
+================================ */
+
+.modalFoodImage {
+  display: block;
+
+  width: 62%;
+
+  height: 210px;
+
+  margin: 0 auto 20px;
+
+  object-fit: cover;
+
+  border-radius: 15px;
+}
+
+/* ================================
+   MODAL FOOD NAME
+================================ */
+
+.modalFoodName {
+  text-align: center;
+
+  margin: 10px 0 15px;
+
+  color: #111;
+
+  font-size: 25px;
+
+  line-height: 1.4;
+
+  font-weight: 600;
+}
+
+/* ================================
+   MODAL DESCRIPTION
+================================ */
+
+.modalDescription {
+  margin: 0 auto 22px;
+
+  max-width: 850px;
+
+  color: #8f8f8f;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+
+  white-space: pre-line;
+}
+
+/* ================================
+   SERVING GRID
+================================ */
+
+.servingsGrid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+.servingCard {
+  padding: 18px;
+
+  border: 1px solid #dfe6dc;
+
+  border-radius: 13px;
+
+  background: #f8fbf5;
 
   box-sizing: border-box;
 }
 
-.menuLabel_title {
-  display: block;
+.servingCard h4 {
+  margin: 0 0 16px;
 
-  margin: 0 0 8px;
+  color: #111;
 
-  color: #000;
+  font-size: 15px;
 
-  font-size: 20px;
-  line-height: 1.3;
+  line-height: 1.4;
+
   font-weight: 600;
-
-  text-transform: capitalize;
-}
-
-.menuDesp {
-  margin: 0 0 12px;
-
-  color: #8f8f8f;
-
-  font-size: 13px;
-  line-height: 20px;
-  font-weight: 500;
-
-  white-space: pre-line;
-
-  overflow-wrap: break-word;
 }
 
 /* ================================
-   SERVING / MACROS
+   MACRO GRID
 ================================ */
 
-.divmacros_outer {
-  display: inline-block;
+.macroGrid {
+  display: grid;
 
-  margin: 0 18px 12px 0;
+  grid-template-columns: repeat(4, 1fr);
 
-  vertical-align: top;
+  gap: 10px;
 }
 
-.menu_macroinf {
-  display: block;
-
-  margin: 0 0 5px;
-
-  color: #000;
-
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 600;
-}
-
-.menuMacro {
-  display: flex;
-
-  align-items: flex-start;
-
-  margin: 0;
-  padding: 0;
-
-  list-style: none;
-
-  gap: 8px;
-}
-
-.menuMacro li {
-  min-width: 38px;
-
-  margin: 0;
-
+.macroItem {
   text-align: center;
-
-  color: #000;
-  line-height: 16px;
 }
 
-.menuMacro li span {
+.macroIcon {
+  width: 40px;
+  height: 40px;
+
+  margin: 0 auto 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #edf5e5;
+
+  font-size: 17px;
+}
+
+.macroItem span {
   display: block;
 
-  color: #3a3a3a;
+  color: #444;
 
   font-size: 12px;
-  font-weight: 500;
+
+  margin-bottom: 3px;
 }
 
-.menuMacro li label {
+.macroItem strong {
   display: block;
 
   color: #80b53b;
 
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 14px;
+}
 
-  white-space: nowrap;
+.calorieText {
+  margin-top: 12px;
+
+  text-align: right;
+
+  color: #80b53b;
+
+  font-size: 13px;
+
+  font-weight: 600;
 }
 
 /* ================================
    TABLET
 ================================ */
 
-@media (min-width: 768px) and (max-width: 1180px) {
+@media (max-width: 1000px) {
+  .menuUl {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .foodcontainer {
     width: 90%;
   }
 
-  .menuDatali {
-    gap: 18px;
-    padding: 18px;
-  }
-
-  .menuImg {
-    width: 160px;
-    min-width: 160px;
-  }
-
-  .imageContainer {
-    width: 150px;
-    height: 140px;
-  }
-
-  .menuLabel_title {
-    font-size: 19px;
+  .modalFoodImage {
+    width: 75%;
   }
 }
 
@@ -370,167 +564,60 @@ not styles.menuUL
 ================================ */
 
 @media (max-width: 767px) {
-  .menusec {
-    margin-top: 45px;
-    padding-top: 145px;
-  }
-
-  /* Category tabs */
-
-  .menutabs_div_scroll {
-    justify-content: flex-start;
-
-    padding: 12px 10px;
-
-    gap: 10px;
-
-    top: 55px;
-  }
-
-  .button {
-    width: 125px;
-    height: 85px;
-
-    font-size: 13px;
-  }
-
-  .menutabs_img {
-    width: 45px;
-    height: 45px;
-  }
-
-  /* Food section */
-
-  .foodcontainer {
-    width: 94%;
-  }
-
-  .menuinnerBox {
-    padding: 10px;
-  }
-
   .menuUl {
-    width: 100%;
-  }
+    grid-template-columns: 1fr;
 
-  /* Food card */
+    gap: 18px;
+  }
 
   .menuDatali {
-    width: 100%;
-
-    margin: 0 0 15px;
-
     padding: 15px;
-
-    flex-direction: column;
-    align-items: stretch;
-
-    gap: 15px;
   }
 
-  /* Image */
-
-  .menuImg {
-    width: 100%;
-    min-width: 0;
-
-    justify-content: center;
-  }
-
-  .imageContainer {
-    width: 100%;
-    max-width: 300px;
-    height: 190px;
-  }
-
-  .proimgTag {
-    left: 5px;
-    top: 5px;
-  }
-
-  /* Food information */
-
-  .menuData {
-    width: 100%;
+  .cardImageWrapper {
+    height: 220px;
   }
 
   .menuLabel_title {
-    font-size: 18px;
-    line-height: 1.35;
-
-    text-align: left;
+    font-size: 19px;
   }
 
   .menuDesp {
-    font-size: 13px;
-    line-height: 19px;
+    font-size: 14px;
   }
 
-  /* Servings */
-
-  .divmacros_outer {
-    display: block;
-
+  .nutritionModal {
     width: 100%;
 
-    margin: 0 0 15px;
+    max-width: 100%;
 
-    padding-bottom: 10px;
+    max-height: 92vh;
 
-    border-bottom: 1px solid #f0f0f0;
+    padding: 25px 18px;
   }
 
-  .menu_macroinf {
-    font-size: 13px;
+  .modalTitle {
+    font-size: 23px;
   }
 
-  .menuMacro {
-    justify-content: flex-start;
-
-    gap: 6px;
+  .modalFoodImage {
+    width: 100%;
+    height: 200px;
   }
 
-  .menuMacro li {
-    min-width: 42px;
-  }
-}
-
-/* ================================
-   SMALL MOBILE
-================================ */
-
-@media (max-width: 420px) {
-  .foodcontainer {
-    width: 96%;
+  .modalFoodName {
+    font-size: 20px;
   }
 
-  .menuinnerBox {
-    padding: 7px;
+  .modalDescription {
+    font-size: 14px;
   }
 
-  .menuDatali {
-    padding: 12px;
+  .servingsGrid {
+    grid-template-columns: 1fr;
   }
 
-  .imageContainer {
-    max-width: 260px;
-    height: 170px;
-  }
-
-  .menuLabel_title {
-    font-size: 17px;
-  }
-
-  .menuMacro {
-    gap: 3px;
-  }
-
-  .menuMacro li {
-    min-width: 38px;
-  }
-
-  .menuMacro li span,
-  .menuMacro li label {
-    font-size: 11px;
+  .macroGrid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
