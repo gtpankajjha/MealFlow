@@ -1,134 +1,234 @@
-.banner_container{
-    
-    position: relative;
-    display: flex;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-        align-items: center;
-}
-.ul{
-    text-decoration: none;
-    list-style-type: none;
-}
-.fixedbanner{
-    width: "70%" !important;
-            align-items: "center" !important;
-            margin-left: "15%"!important;
-            box-shadow: " rgba(0, 0, 0, 0.24) 0px 3px 8px" !important;
-            margin-top: "5%" !important;
-}
-.imagestyle{
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    position: relative;
-    left: 215px;
-     width: 70%;
+/* =========================================================
+   BANNER SECTION
+========================================================= */
 
+.banner_section {
+  width: 100%;
+
+  background-color: #ffffff;
+
+  box-sizing: border-box;
 }
-.container{
-    max-width: 1140px;
-    
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+  width: 100%;
+
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 35px 25px 40px;
+
+  box-sizing: border-box;
 }
-.banner_section{
-    display: inline-block;
-        width: 100%;
-        position: relative;
-        padding: 20px 0px;
+
+
+/* =========================================================
+   BANNER HEADING
+========================================================= */
+
+.bannerhead {
+  margin: 0 0 35px;
+
+  color: #000000;
+
+  font-size: 58px;
+
+  line-height: 1.15;
+
+  font-weight: 700;
 }
-.bannerhead{
-font-weight: 700 !important;
-        font-size: 60px !important;
-        margin-bottom: 45px !important;
-        color: black !important;
-        margin-left: 12%;
+
+.bannerhead_span {
+  display: block;
+
+  color: #80b53b;
+
+  font-size: 58px;
+
+  font-weight: 300;
 }
-.image_flex{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    margin-left: 9%;
+
+
+/* =========================================================
+   IMAGE + CONTENT
+========================================================= */
+
+.image_flex {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 50px;
+
+  width: 100%;
 }
+
+
+/* =========================================================
+   IMAGE CONTAINER
+========================================================= */
+
+.bannerImageContainer {
+  width: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  order: 2;
+}
+
+
+/* =========================================================
+   BANNER IMAGE
+========================================================= */
+
 .bannerimg {
-    width: 130%;
-    margin-top: -50px;
-    margin-left: '-5%';
+  display: block;
+
+  width: 100%;
+
+  max-width: 500px;
+
+  height: 400px;
+
+  object-fit: cover;
+
+  border-radius: 12px;
 }
-.bannerhead_span{
-    color: #80b53b;
-    display: block;
-    font-weight: 300;
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.bannerContent {
+  width: 50%;
+
+  order: 1;
 }
+
+
+/* =========================================================
+   BENEFITS LIST
+========================================================= */
+
 .bannerBullet {
-    color: #000;
-    width: 100%;
-    display: inline-block;
+  margin: 0;
+
+  padding: 0;
 }
-.bannerBullet li p {
-    font-weight: 500;
-    font-size: 18px;
-    margin-bottom: 25px;
-    background-color:white;
-    background-image: url("https://toneopeats.com/public/img/leaf.webp");
-    background-position: left 4px;
-    background-size: 25px;
-    background-repeat: no-repeat;
-    padding-left: 39px;
+
+.bannerBullet li {
+  margin: 0 0 22px;
+
+  padding: 0;
 }
-@media (min-width: 1200px) .container,
-.container-lg,
-.container-md,
-.container-sm,
-.container-xl {
-    max-width: 1140px;
+
+.bannerBullet p {
+  margin: 0;
+
+  color: #222222;
+
+  font-size: 17px;
+
+  line-height: 1.5;
+
+  font-weight: 500;
 }
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .container {
+    padding: 30px 20px 35px;
+  }
+
+  .bannerhead {
+    font-size: 48px;
+  }
+
+  .bannerhead_span {
+    font-size: 48px;
+  }
+
+  .image_flex {
+    gap: 30px;
+  }
+
+  .bannerimg {
+    height: 350px;
+  }
+
+  .bannerBullet p {
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 767px) {
-    .bannerhead {
-        font-size: 0px;
-        margin-left: 0;
-    }
+  .container {
+    padding: 25px 15px 30px;
+  }
 
-    .bannerimg {
-        width: 100%;
-        margin-top: 20px;
-        margin-left: 0;
-    }
+  .bannerhead {
+    font-size: 38px;
 
-    .bannerBullet li p {
-        font-size: 14px;
-        margin-bottom: 15px;
-        padding-left: 34px;
-        background-size: 20px;
-    }
-}
+    margin-bottom: 25px;
+  }
 
-/* For screens between 768px and 992px (e.g. tablets) */
-@media (min-width: 268px) and (max-width: 768px) {
-    .bannerhead {
-            font-weight: 700 !important;
-            font-size: 30px !important;
-            margin-bottom: 45px !important;
-            color: black !important;
-            margin-left: 5%;
-        }
-        .image_flex {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-            margin-left: 9%;
-        }
+  .bannerhead_span {
+    font-size: 38px;
+  }
 
-    .bannerimg {
-        width: 80%;
-        margin-top: -20px;
-        margin-left: 10%;
-    }
+  .image_flex {
+    flex-direction: column;
 
-    .bannerBullet li p {
-        font-size: 16px;
-        margin-bottom: 20px;
-        padding-left: 36px;
-        background-size: 23px;
-        margin-left: -12%;
-    }
+    gap: 25px;
+  }
+
+  .bannerImageContainer {
+    width: 100%;
+
+    order: 1;
+  }
+
+  .bannerContent {
+    width: 100%;
+
+    order: 2;
+  }
+
+  .bannerimg {
+    width: 100%;
+
+    max-width: 500px;
+
+    height: 280px;
+  }
+
+  .bannerBullet li {
+    margin-bottom: 15px;
+  }
+
+  .bannerBullet p {
+    font-size: 15px;
+  }
 }

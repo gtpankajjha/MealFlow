@@ -1,47 +1,43 @@
 import React from "react";
 import styles from "../styles/Preference.module.css";
 
-const PrefrenceComponent = ({
+const PreferenceComponent = ({
   title,
   prefrenceOptions,
   prefrenceItem,
   prefrenceHandler,
-}) => (
-  <div className={styles.qtninnerul_li}>
-    <div className={styles.qtnTitle}>
-      {title}
-      <span style={{ color: "#ed1111", marginLeft: "3px" }}>*</span>
-    </div>
-    <div className={styles.option_container}>
-      {prefrenceOptions.map((item, index) => (
-        <button
-          key={index}
-          //   className={`${styles.cat_label_input_span} ${
-          //     prefrenceItem[item] ? styles.selected : ""
-          //   }`}
-          className={styles.cat_label_input_span}
-          style={{
-            color: prefrenceItem[item] ? "#fff" : "black",
-            backgroundColor: prefrenceItem[item] ? " #80B53B" : "white",
-            outline: "none",
-          }}
-          onClick={() => prefrenceHandler(item)}
-        >
-          <span
-            // className={`${styles.item_container_text} ${
-            //   prefrenceItem[item] ? styles.selected_text : ""
-            // }`}
-            style={{
-              color: prefrenceItem[item] ? "#fff" : "black",
-              border: "none",
-            }}
-          >
-            {item}
-          </span>
-        </button>
-      ))}
-    </div>
-  </div>
-);
+}) => {
+  return (
+    <div className={styles.preferenceGroup}>
 
-export default PrefrenceComponent;
+      <div className={styles.preferenceTitle}>
+        {title}
+        <span className={styles.requiredStar}>*</span>
+      </div>
+
+      <div className={styles.preferenceOptions}>
+        {prefrenceOptions.map((item) => {
+          const isSelected = Boolean(prefrenceItem?.[item]);
+
+          return (
+            <button
+              type="button"
+              key={item}
+              className={`${styles.preferenceOption} ${
+                isSelected
+                  ? styles.preferenceOptionActive
+                  : ""
+              }`}
+              onClick={() => prefrenceHandler(item)}
+            >
+              {item === "NonVeg" ? "Non-Veg" : item}
+            </button>
+          );
+        })}
+      </div>
+
+    </div>
+  );
+};
+
+export default PreferenceComponent;

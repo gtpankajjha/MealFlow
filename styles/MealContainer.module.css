@@ -1,475 +1,751 @@
-.tab_div{
-    display: flex;
-        text-align: center;
-    
-      
-}
-.modal_container{
-    
-            display: flex;
-             justify-content: space-between;
-        
-}
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
-.productDetailSec {
-    padding-top: 120px;
-}
-.section {
-    display: inline-block;
-    width: 100%;
-    position: relative;
-    padding: 20px 0px;
-  
-}
-.container,
-.container-fluid,
-.container-lg,
-.container-md,
-.container-sm,
-.container-xl {
-    width: 100%;
-    padding-right: 130px;
-    padding-left: 75px;
-    margin-right: auto;
-    margin-left: auto;
-    background-color: transparent;
-   
-   
-}
-.proimgTag {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    width: 22px;
-}
-.carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    min-height: 400px;
-    min-width: 200px;
-    margin-left: 10%;
-  
-    background-color: #f8fbf5;
-}
-
-.carousel_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    min-height: 400px;
-    min-width: 200px;
-   
-    background-color: #f8fbf5;
-}
-.img_container{
-    justify-content: center;
-    text-align: center;
-    width: 250px;
-}
-.img_small {
-   
-display: flex;
-    margin-top: 3%;
-    justify-content: center;
-}
-.productDetailSec .carousel-item div {
-    text-align: center;
-    min-height: 400px;
-    position: relative;
-    background-color: #f8fbf5;
-}
-.carousel_inner {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-.liactive {
-    opacity: 1;
-    border: 1px solid #80b53b;
-    background-color: #f8fbf5;
-    height: 82px;
-    width: 82px;
-   
-}
-.carousel_indicators {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 15;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-    justify-content: center;
-    padding-left: 0;
-    margin-right: 15%;
-    margin-left: 15%;
-    list-style: none;
-}
-.foodDetails_div {}
-.foodDetails_div h2 {
-    color: #000;
-    margin-top: 3px;
-    margin-bottom: 19px;
-}
-.foodDetails_div p {
-    color: #8F8F8F;
-    font-weight: 500;
-}
-.likeprod_outer .foodDetails_div {
-    padding: 7px 15px 15px 15px;
-}
-.likeprod_outer .foodDetails_div h2 {
-    margin-top: 6px;
-    margin-bottom: 9px;
-    font-weight: 600;
-    font-size: 20px;
-}
-
-.likeprod_outer .foodDetails_div p {
-    margin-bottom: 9px;
-    line-height: 23px;
-
-}
-.foodDetails_div .menu_macroinf {
-    font-size: 17px;
-    margin-bottom: 5px !important;
-    margin: 0;
-    display: block;
-    margin-top: 9px;
-    font-weight: 600;
-}
-.pd_catLabel {
-    font-size: 19px;
-    color: #3A3A3A;
-    margin-right: 20px;
-    font-weight: 600;
-}
-
-.pd_catLabel span {
-    color: #8F8F8F;
-    font-size: 15px;
-    margin-right: 2px;
-    font-weight: 500;
-}
-.meal_name{
-   
-                color: #000; font-size: 24px;
-
-            }
-       
-.nav_tab{
-    display: flex;
-    margin-top: 30px;
-    border-bottom: 3px solid #8F8F8F;
-    margin-bottom: 9px;
-}
-
-.button{
-    outline: none;
-color: #000;
-font-size: 15px;
-font-weight: 600;
-
-            background-color: transparent;
-            border: none;
-}
-.button :hover {
-    outline: none;
-    color: #3105c1;
-    background-color: transparent;
-    border: none;
-}
-.meal_price{
-    display: flex;
-     flex-direction: column;
-      width: 100%;
-}
-.modal_cross{
-    color: #000;
-            border: none;
-            outline: none;
-            background-color: transparent;
-            text-shadow: 0 1px 0 #fff;
-            font-size: 24px;
-            font-weight: bold;
-            opacity: 0.5;
-}
-.tab_active{
-    color: #000 !important;
-    border-bottom: 3px solid #80b53b;
-    text-align: center;
-    padding: 10px;
-        
-}
-.tab_content{
-    background-color: #fff;
-}
-.button_container{
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2%;
-       
-}
-.arrow_image{
-    height: 20%;
-    width: 10%;
-}
-.individual_button{
-    position: relative;
-    border-radius: 75px;
-    height: 40px;
-    width: 185px;
-    background-color: #ffffff;
-    border: 1px solid #80B53D;
-    box-shadow: 0px 3px 6px rgb(0 0 0 / 20%);
-    color: #80b53b !important;
-    text-align: center;  
-    padding: 10px;
-    font-size: 15px;
-    font-weight: 500;
-
-}
-
-.food_ul{
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 15px;
-        padding: 0px 12px;
-        padding-bottom: 30px;
-        border-bottom: 1px solid #e8eee0;  
-}
-
-.food_li{
-    width: 23%;
-            border: 1px solid #E8EEE0;
-            border-radius: 15px;
-            margin: 1%;
-            text-align: center;
-            padding: 16px;
-}
-.if_img {
-    height: 85px;
-    object-fit: contain;
-}
-
-.if_title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-top: 14px;
-    line-height: 24px;
-    min-height: 50px;
-    color: #000;
-}
-.if_pop {
-    margin: auto;
-    display: inline-block;
-    width: 100%;
-    font-weight: 600;
-    color: #80b53a !important;
-    border: 1px solid #80b53a;
-    border-radius: 6px;
-    padding-top: 5px;
-    margin-top: 5px;
-}
-
-.button_design {
-    margin: auto;
-    display: inline-block;
-    width: 100%;
-    font-weight: 600;
-    color: #80b53a !important;
-    border: 1px solid #80b53a;
-    border-radius: 6px;
-    padding-top: 3px;
-    padding-bottom: 2px;
-    margin-top: 5px;
-    outline: none;
-    background-color: #ffffff;
-}
-.what_text{
-    font-size: 15px;
-    
-}
-.h2{
-    margin: 3px 0px 19px;
-    font-family:'Montserrat';
-    font-size: 32px;
-}
-
-.custom_content {
-    top: 55%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border-radius: 8px;
-    padding: 12px;
-    width: 40%;
-    overflow-y: auto;
-}
-.mealContainer{
-    display: flex;
-
- background-color: #f8fbf5;
-            width: 100%;
-            border: 1px solid #E8EEE0;
-            border-radius: 10px;
-            margin-bottom: 5px;
-}
-
-.fancyCheck {
-    display: block;
-    position: relative;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
-  
-}
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    border-radius: 14px;
- 
+.tab_Div {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 
-@media (min-width: 268px) and (max-width: 768px) {
+/* =========================================================
+   FOOD CARD GRID
+========================================================= */
+
+.food_ul {
+  width: 100%;
+
+  margin: 0;
+  padding: 25px 25px 30px;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 26px;
+
+  list-style: none;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FOOD CARD
+========================================================= */
 
 .food_li {
-        width: 48%;
-        border: 1px solid #E8EEE0;
-        border-radius: 15px;
-        margin: 1%;
-        text-align: center;
-        padding: 16px;
-    }
+  width: 100%;
+  min-width: 0;
 
-        .container,
-        .container-fluid,
-        .container-lg,
-        .container-md,
-        .container-sm,
-        .container-xl {
-            width: 100%;
-            padding-right: 10px;
-            padding-left: 10px;
-            margin-right: auto;
-            margin-left: auto;
-            background-color: transparent;
-    
-    
-        }
-                .what_text {
-                    font-size: 13px;
-        
-                }
-.carousel {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-        
-                    min-height: 400px;
-                    min-width: 200px;
-                   
-                    background-color: #f8fbf5;
-                   }
+  padding: 16px;
 
-.if_pop {
-    margin: auto;
-    /* display: inline-block; */
-    width: 105%;
-    font-weight: 500;
-    color: #80b53a !important;
-    border: 1px solid #80b53a;
-    border-radius: 6px;
-    padding: 2px;
-    margin-left: -2%;
-    
+  border: 1px solid #e4eadf;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
+
+.food_li:hover {
+  border-color: #80b53b;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   FOOD TOP SECTION
+========================================================= */
+
+.foodTop {
+  position: relative;
+
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CHECKBOX BUTTON
+========================================================= */
+
+.checkButton {
+  position: absolute;
+
+  top: 8px;
+  left: 8px;
+
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  z-index: 3;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.checkButton:focus,
+.checkButton:focus-visible {
+  outline: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   FOOD IMAGE
+========================================================= */
+
+.if_img {
+  display: block;
+
+  width: 100%;
+  height: 205px;
+
+  margin: 0 0 14px;
+
+  object-fit: cover;
+
+  border-radius: 13px;
+
+  background: #f5f5f5;
+}
+
+
+/* =========================================================
+   FOOD TITLE
+========================================================= */
+
 .if_title {
-    font-size: 14px;
-    font-weight: 600;
-    /* margin-top: 14px; */
-    line-height: 24px;
-    min-height: 50px;
-    color: #000;
+  width: 100%;
+
+  margin: 0;
+
+  color: #555555;
+
+  font-size: 20px;
+
+  line-height: 1.35;
+
+  font-weight: 600;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
 }
-.arrow_image {
-    height: 0%;
-    width: 0%;
+
+
+/* =========================================================
+   CALORIES
+========================================================= */
+
+.cardCalories {
+  margin-top: 8px;
+
+  color: #666666;
+
+  font-size: 15px;
+
+  font-weight: 600;
 }
+
+
+/* =========================================================
+   WHAT YOU WILL GET BUTTON
+========================================================= */
+
 .button_design {
-    margin: auto;
-    display: inline-block;
-    width: 105%;
-    font-weight: 600;
-    color: #80b53a !important;
-    border: 1px solid #80b53a;
-    border-radius: 6px;
-    padding-top: 3px;
-    padding-bottom: 2px;
-    margin-top: 5px;
-    margin-left: -4px;
-    outline: none;
-    background-color: #ffffff;
+  width: 100%;
+
+  min-height: 42px;
+
+  margin-top: 15px;
+
+  padding: 8px 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  border: 1px solid #80b53b;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #80b53b;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 22px;
-    width: 22px;
-    border: 1px solid greenyellow;
-    border-radius: 14px;
-}
+
+.button_design:hover {
+  background: #80b53b;
+
+  border-color: #80b53b;
+
+  color: #ffffff;
 }
 
-@media (min-width: 768px) and (max-width: 1180px) {
+.button_design:focus,
+.button_design:focus-visible {
+  outline: none;
 
-    .food_li {
-        width: 48%;
-        border: 1px solid #E8EEE0;
-        border-radius: 15px;
-        margin: 1%;
-        text-align: center;
-        padding: 16px;
-    }
-        .carousel {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-    
-            min-height: 400px;
-            min-width: 200px;
-          
-            background-color: #f8fbf5;
-        }
+  border-color: #80b53b;
 
-    .if_pop {
-        margin: auto;
-        display: inline-block;
-        width: 105%;
-        font-weight: 500;
-        color: #80b53a !important;
-        border: 1px solid #80b53a;
-        border-radius: 6px;
-        padding: 2px;
-        margin-left: -2%;
+  box-shadow: none;
+}
 
-    }
+.what_text {
+  display: inline-block;
+}
 
-    .arrow_image {
-        height: 0%;
-        width: 0%;
-    }
+.arrow_image {
+  display: inline-block;
+
+  font-size: 17px;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   VIEW MORE / VIEW LESS
+========================================================= */
+
+.viewMoreContainer {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 15px 0 45px;
+
+  box-sizing: border-box;
+}
+
+.viewMoreButton {
+  min-width: 130px;
+
+  padding: 9px 22px;
+
+  border: 1px solid #80b53b;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #80b53b;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.viewMoreButton:hover {
+  background: #80b53b;
+
+  border-color: #80b53b;
+
+  color: #ffffff;
+}
+
+.viewMoreButton:focus,
+.viewMoreButton:focus-visible {
+  outline: none;
+
+  border-color: #80b53b;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loadingMessage {
+  width: 100%;
+
+  padding: 50px 20px;
+
+  text-align: center;
+
+  color: #777777;
+
+  font-size: 16px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.errorMessage {
+  width: 100%;
+
+  padding: 50px 20px;
+
+  text-align: center;
+
+  color: #d33;
+
+  font-size: 16px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   NO ITEMS
+========================================================= */
+
+.noItems {
+  width: 100%;
+
+  padding: 50px 20px;
+
+  text-align: center;
+
+  color: #777777;
+
+  font-size: 17px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   NUTRITION MODAL
+========================================================= */
+
+.nutritionModal {
+  z-index: 9999;
+}
+
+
+/* =========================================================
+   MODAL TITLE
+========================================================= */
+
+.modalTitle {
+  width: 100%;
+
+  text-align: center;
+
+  color: #111111;
+
+  font-size: 25px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
+
+.modalContent {
+  width: 100%;
+
+  padding: 5px 20px 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MODAL FOOD IMAGE
+========================================================= */
+
+.modalFoodImage {
+  display: block;
+
+  width: 62%;
+
+  height: 210px;
+
+  margin: 0 auto 20px;
+
+  object-fit: cover;
+
+  border-radius: 15px;
+
+  background: #f5f5f5;
+}
+
+
+/* =========================================================
+   MODAL FOOD NAME
+========================================================= */
+
+.modalFoodName {
+  margin: 10px 0 15px;
+
+  text-align: center;
+
+  color: #111111;
+
+  font-size: 24px;
+
+  line-height: 1.4;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   MODAL DESCRIPTION
+========================================================= */
+
+.modalDescription {
+  max-width: 850px;
+
+  margin: 0 auto 22px;
+
+  color: #8f8f8f;
+
+  font-size: 15px;
+
+  line-height: 1.65;
+
+  white-space: pre-line;
+}
+
+
+/* =========================================================
+   MODAL NUTRITION GRID
+========================================================= */
+
+.modalNutritionGrid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   MODAL SERVING CARD
+========================================================= */
+
+.modalServingCard {
+  width: 100%;
+
+  padding: 18px;
+
+  border: 1px solid #dfe6dc;
+
+  border-radius: 13px;
+
+  background: #f8fbf5;
+
+  box-sizing: border-box;
+}
+
+.modalServingCard h4 {
+  margin: 0 0 16px;
+
+  color: #111111;
+
+  font-size: 15px;
+
+  line-height: 1.4;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   MODAL MACRO GRID
+========================================================= */
+
+.modalMacroGrid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+
+/* =========================================================
+   MODAL MACRO ITEM
+========================================================= */
+
+.modalMacroItem {
+  min-width: 0;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   MACRO ICON
+========================================================= */
+
+.macroIcon {
+  width: 40px;
+  height: 40px;
+
+  margin: 0 auto 7px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #edf5e5;
+
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   MACRO LABEL
+========================================================= */
+
+.modalMacroItem span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #444444;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   MACRO VALUE
+========================================================= */
+
+.modalMacroItem strong {
+  display: block;
+
+  color: #80b53b;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   MODAL CALORIES
+========================================================= */
+
+.modalCalories {
+  margin-top: 12px;
+
+  text-align: right;
+
+  color: #80b53b;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   TABLET - 3 COLUMNS
+========================================================= */
+
+@media (max-width: 1100px) {
+  .food_ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .if_img {
+    height: 190px;
+  }
+
+  .modalFoodImage {
+    width: 72%;
+  }
+}
+
+
+/* =========================================================
+   TABLET - 2 COLUMNS
+========================================================= */
+
+@media (max-width: 850px) {
+  .food_ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .modalNutritionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalFoodImage {
+    width: 80%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .food_ul {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+
+    padding: 0 15px 30px;
+  }
+
+  .food_li {
+    padding: 15px;
+  }
+
+  .if_img {
+    height: 220px;
+  }
+
+  .if_title {
+    font-size: 19px;
+  }
+
+  .cardCalories {
+    font-size: 14px;
+  }
+
+  .button_design {
+    min-height: 40px;
+
+    font-size: 13px;
+  }
+
+  .viewMoreContainer {
+    margin-top: 10px;
+
+    margin-bottom: 30px;
+  }
+
+  .viewMoreButton {
+    min-width: 120px;
+
+    font-size: 13px;
+  }
+
+  .modalContent {
+    padding: 5px 5px 15px;
+  }
+
+  .modalFoodImage {
+    width: 100%;
+
+    height: 200px;
+  }
+
+  .modalFoodName {
+    font-size: 20px;
+  }
+
+  .modalDescription {
+    font-size: 14px;
+  }
+
+  .modalServingCard {
+    padding: 14px;
+  }
+
+  .modalMacroGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 5px;
+  }
+
+  .macroIcon {
+    width: 34px;
+    height: 34px;
+
+    font-size: 14px;
+  }
+
+  .modalMacroItem span {
+    font-size: 10px;
+  }
+
+  .modalMacroItem strong {
+    font-size: 12px;
+  }
 }

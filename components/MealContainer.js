@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../styles/MealContainer.module.css";
-// import useApi from "../components/useApi";
-import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-import Link from "next/link";
+
+const IMAGE_URL =
+  "https://toneop.s3.ap-south-1.amazonaws.com/";
+
+const INITIAL_VISIBLE_ITEMS = 9;
 
 const MealContainer = ({
   mealDietSelectedItem,
   userPackageData,
   mealItem,
   mealData,
-  // isMealExistInUserPackageData,
   onCheckedPress,
   isPackageSelected,
   onButtonPressed,
@@ -20,201 +21,391 @@ const MealContainer = ({
   isInsideModal = false,
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const closeModal = () => setIsModalVisible(false);
-  // const [filterdItems, setFilteredItems] = useState([]);
-  const [modalData, setModalData] = useState([]);
-  const [modalHeader, setModalHeader] = useState([]);
+  const [modalData, setModalData] = useState(null);
 
-  const onPressMetaTitle = () => {
-    if (isInsideModal) {
-      setIsExpanded(true);
-    } else {
-      setIsExpanded(!isExpanded);
-    }
+  const [showAllItems, setShowAllItems] = useState(false);
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+    setModalData(null);
   };
 
+  /*
+   * Open "What you will get" modal
+   */
   const modalHandler = (item) => {
     setModalData(item);
-    setIsModalVisible(!isModalVisible);
+    setIsModalVisible(true);
   };
 
+  /*
+   * Check whether meal is already selected
+   */
   const isMealExistInUserPackageData = (id) => {
-    let isExist;
-    if (isPackageSelected.isLunchPackage) {
-      isExist = userPackageData.lunchPackage.find(
-        (ele) => ele.mealItem.id === id
-      );
-    } else {
-      isExist = userPackageData.dinnerPackage.find(
-        (ele) => ele.mealItem.id === id
-      );
+    if (!isPackageSelected || !userPackageData) {
+      return false;
     }
-    if (isExist) {
-      return true;
+
+    try {
+      if (isPackageSelected.isLunchPackage) {
+        return (
+          userPackageData?.lunchPackage?.some(
+            (ele) => ele?.mealItem?.id === id
+          ) || false
+        );
+      }
+
+      return (
+        userPackageData?.dinnerPackage?.some(
+          (ele) => ele?.mealItem?.id === id
+        ) || false
+      );
+    } catch (err) {
+      return false;
     }
-    return false;
   };
+
+  /*
+   * Support current preference API structure
+   */
+  const getMealName = (item) => {
+    return item?.name || item?.subscription_name || "Meal";
+  };
+
+  const getMealDescription = (item) => {
+    return item?.description || "";
+  };
+
+  /*
+   * Nutrition comes from food_serving
+   */
+  const getNutritionData = (item) => {
+    if (Array.isArray(item?.food_serving)) {
+      return item.food_serving;
+    }
+
+    return [];
+  };
+
+  /*
+   * Get first kcal for card
+   */
+  const getCalories = (item) => {
+    const nutrition = getNutritionData(item);
+
+    if (nutrition.length > 0 && nutrition[0]?.kcal !== undefined) {
+      return nutrition[0].kcal;
+    }
+
+    return null;
+  };
+
+  /*
+   * Initially show only 9.
+   * After View More, show everything.
+   */
+  const visibleItems = showAllItems
+    ? filterdItems || []
+    : (filterdItems || []).slice(0, INITIAL_VISIBLE_ITEMS);
+
+  const hasMoreItems =
+    (filterdItems?.length || 0) > INITIAL_VISIBLE_ITEMS;
 
   return (
     <div className={styles.tab_Div}>
-      <Modal show={isModalVisible} onHide={closeModal}>
-        <div>
-          <Modal.Header closeButton>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <Modal.Title className={styles.meal_name}>
-                {modalData.subscription_name}
-              </Modal.Title>
-              <span style={{ color: "gray" }}>
-                {` You will get one of these as your "Dish Of The Day"`}
-              </span>
-            </div>
-          </Modal.Header>
-          <div style={{ marginTop: "2%", padding: "10px" }}>
-            {modalData?.food?.map((item, index) => {
-              const Image_URL = "https://toneop.s3.ap-south-1.amazonaws.com/";
 
-              return (
-                <div style={{ overflow: "scroll" }} key={index}>
-                  <div className={styles.mealContainer}>
-                    <img
-                      style={{ height: "70px" }}
-                      src={`${Image_URL}${item.image}`}
-                    />
-                    <div style={{ margin: "0%" }}>
-                      <Link
-                        href={{
-                          pathname: "/mealdetail",
-                          query: { item: JSON.stringify(item) },
-                        }}
-                        passHref
-                        className={styles.button}
-                      >
-                        <span className={styles.button}>{item.name}</span>
-                      </Link>
+      {/* =====================================================
+          NUTRITIONAL INFO MODAL
+      ====================================================== */}
 
-                      <div>
-                        <span style={{ color: "#000" }}>
-                          Kacl:{" "}
-                          <span style={{ color: "green" }}>{item.kcal}</span>
-                        </span>
+      <Modal
+        show={isModalVisible}
+        onHide={closeModal}
+        centered
+        size="lg"
+        className={styles.nutritionModal}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className={styles.modalTitle}>
+            Nutritional Info
+          </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          {modalData && (
+            <div className={styles.modalContent}>
+
+              {/* Food Image */}
+              <img
+                src={`${IMAGE_URL}${modalData.image}`}
+                alt={getMealName(modalData)}
+                className={styles.modalFoodImage}
+              />
+
+              {/* Food Name */}
+              <h2 className={styles.modalFoodName}>
+                {getMealName(modalData)}
+              </h2>
+
+              {/* Description */}
+              {getMealDescription(modalData) && (
+                <p className={styles.modalDescription}>
+                  {getMealDescription(modalData)}
+                </p>
+              )}
+
+              {/* =================================================
+                  NUTRITION SERVINGS
+              ================================================== */}
+
+              <div className={styles.modalNutritionGrid}>
+                {getNutritionData(modalData).map(
+                  (nutrition, index) => (
+                    <div
+                      className={styles.modalServingCard}
+                      key={`${nutrition?.name || "serving"}-${index}`}
+                    >
+                      <h4>
+                        {nutrition?.name ||
+                          "Nutrition Information"}
+                      </h4>
+
+                      <div className={styles.modalMacroGrid}>
+
+                        {/* Protein */}
+                        <div className={styles.modalMacroItem}>
+                          <div
+                            className={styles.macroIcon}
+                          >
+                            🥩
+                          </div>
+
+                          <span>Protein</span>
+
+                          <strong>
+                            {nutrition?.protein ?? 0}g
+                          </strong>
+                        </div>
+
+                        {/* Fat */}
+                        <div className={styles.modalMacroItem}>
+                          <div
+                            className={styles.macroIcon}
+                          >
+                            💧
+                          </div>
+
+                          <span>Fat</span>
+
+                          <strong>
+                            {nutrition?.fat ?? 0}g
+                          </strong>
+                        </div>
+
+                        {/* Fiber */}
+                        <div className={styles.modalMacroItem}>
+                          <div
+                            className={styles.macroIcon}
+                          >
+                            🌱
+                          </div>
+
+                          <span>Fiber</span>
+
+                          <strong>
+                            {nutrition?.fibre ?? 0}g
+                          </strong>
+                        </div>
+
+                        {/* Carbs */}
+                        <div className={styles.modalMacroItem}>
+                          <div
+                            className={styles.macroIcon}
+                          >
+                            🌾
+                          </div>
+
+                          <span>Carbs</span>
+
+                          <strong>
+                            {nutrition?.carbs ?? 0}g
+                          </strong>
+                        </div>
+                      </div>
+
+                      {/* Calories */}
+                      <div className={styles.modalCalories}>
+                        {nutrition?.kcal ?? 0} kcal
                       </div>
                     </div>
+                  )
+                )}
+              </div>
+            </div>
+          )}
+        </Modal.Body>
+      </Modal>
+
+      {/* =====================================================
+          FOOD CARDS
+      ====================================================== */}
+
+      {loading ? (
+        <div className={styles.loadingMessage}>
+          Loading...
+        </div>
+      ) : error ? (
+        <div className={styles.errorMessage}>
+          Error: {error?.message || "Unable to load meals"}
+        </div>
+      ) : visibleItems.length === 0 ? (
+        <div className={styles.noItems}>
+          No meals available.
+        </div>
+      ) : (
+        <>
+          <ul className={styles.food_ul}>
+            {visibleItems.map((item) => {
+              const isSelected =
+                isMealExistInUserPackageData(item.id);
+
+              return (
+                <li
+                  className={styles.food_li}
+                  key={item.id}
+                >
+                  {/* =================================================
+                      FOOD AREA
+                  ================================================== */}
+
+                  <div className={styles.foodTop}>
+
+                    {/* Checkbox */}
+                    <button
+                      type="button"
+                      className={styles.checkButton}
+                      onClick={() =>
+                        onCheckedPress(item)
+                      }
+                      aria-label={
+                        isSelected
+                          ? `Remove ${getMealName(item)}`
+                          : `Select ${getMealName(item)}`
+                      }
+                    >
+                      {isSelected ? (
+                        <span
+                          className="material-symbols-outlined"
+                          style={{
+                            backgroundColor:
+                              "#80b53b",
+                            color: "#fff",
+                            height: "25px",
+                            width: "25px",
+                            borderRadius: "3px",
+                            fontWeight: "900",
+                            fontSize: "22px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent:
+                              "center",
+                          }}
+                        >
+                          check
+                        </span>
+                      ) : (
+                        <span
+                          className="material-symbols-outlined"
+                          style={{
+                            color: "#eeeeee",
+                            height: "25px",
+                            width: "25px",
+                            backgroundColor:
+                              "#eeeeee",
+                            borderRadius: "3px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent:
+                              "center",
+                          }}
+                        >
+                          check_box_outline_blank
+                        </span>
+                      )}
+                    </button>
+
+                    {/* Food Image */}
+                    <img
+                      className={styles.if_img}
+                      src={`${IMAGE_URL}${item.image}`}
+                      alt={getMealName(item)}
+                    />
+
+                    {/* Food Name */}
+                    <h2 className={styles.if_title}>
+                      {getMealName(item)}
+                    </h2>
+
+                    {/* Calories */}
+                    {getCalories(item) !== null && (
+                      <div
+                        className={styles.cardCalories}
+                      >
+                        {getCalories(item)} kcal/serving
+                      </div>
+                    )}
                   </div>
-                </div>
+
+                  {/* =================================================
+                      WHAT YOU WILL GET
+                      DIRECTLY OPENS MODAL
+                  ================================================== */}
+
+                  <button
+                    type="button"
+                    className={styles.button_design}
+                    onClick={() =>
+                      modalHandler(item)
+                    }
+                  >
+                    <span className={styles.what_text}>
+                      What you will get
+                    </span>
+
+                    <span
+                      className={styles.arrow_image}
+                    >
+                      →
+                    </span>
+                  </button>
+                </li>
               );
             })}
-          </div>
-          <div style={{ marginLeft: "80%", marginTop: "10px" }}>
-            <Button
-              type="secondary"
-              onClick={closeModal}
-              style={{
-                backgroundColor: "#fff",
-                color: "gray",
-                border: "none",
-                marginBottom: "10px",
-              }}
-            >
-              Close
-            </Button>
-          </div>
-        </div>
-      </Modal>
-      <ul className={styles.food_ul}>
-        {loading ? (
-          <div>Loading...</div>
-        ) : error ? (
-          <div>Error:{error.message}</div>
-        ) : (
-          filterdItems?.map((item, index) => {
-            const Image_URL = "https://toneop.s3.ap-south-1.amazonaws.com/";
-            return (
-              <li className={styles.food_li} key={index}>
-                <label className={styles.fancyCheck}>
-                  <button
-                    className={styles.fancyCheck}
-                    onClick={() => onCheckedPress(item)}
-                    style={{
-                      outline: "none",
-                      border: "none",
-                      backgroundColor: "transparent",
-                      height: "25px",
-                      width: "25px",
-                      transition: "background-color 0.5s, color 0.3s",
-                    }}
-                  >
-                    {isMealExistInUserPackageData(item.id) ? (
-                      <span
-                        className="material-symbols-outlined"
-                        style={{
-                          backgroundColor: "#80b53b",
-                          color: "white",
-                          height: "25px",
-                          width: "25px",
-                          borderRadius: "3px",
-                          fontWeight: "900",
-                          fontSize: "22px",
-                          // transition: "background-color 0.5s, color 0.3s",
-                        }}
-                      >
-                        check
-                      </span>
-                    ) : (
-                      <span
-                        class="material-symbols-outlined"
-                        style={{
-                          color: "#eeeeee",
-                          height: "25px",
-                          width: "25px",
-                          backgroundColor: "#eeeeee",
-                          borderRadius: "3px",
-                          transition: "background-color 0.5s, color 0.3s",
-                        }}
-                      >
-                        check_box_outline_blank
-                      </span>
-                    )}
-                  </button>
-                  {/* <input
-                    type="checkbox"
-                    // name="pkgprice"
-                    value={1}
-                    className={styles.checkmark}
-                    onClick={() => onCheckedPress(item)}
-                  /> */}
-                  <img
-                    className={styles.if_img}
-                    id="mealimg-1"
-                    src={`${Image_URL}${item.image}`}
-                  />
-                  <input
-                    type="hidden"
-                    id="pimage-4"
-                    value="https://toneopeats.com/public/img/individual/veggrill.png"
-                  />
-                  <h2 className={styles.if_title} id="mealtitle-4">
-                    {item.subscription_name}
-                  </h2>
-                </label>
+          </ul>
 
-                <button
-                  className={styles.button_design}
-                  style={{ outline: "none" }}
-                  onClick={() => modalHandler(item)}
-                >
-                  <span className={styles.what_text}> What you will get</span>
+          {/* =====================================================
+              VIEW MORE / VIEW LESS
+          ====================================================== */}
 
-                  <img
-                    src="https://toneopeats.com/public/img/arrowgreen.svg"
-                    // style={{ width: "10%", height: "20%" }}
-                    className={styles.arrow_image}
-                  />
-                </button>
-              </li>
-            );
-          })
-        )}
-      </ul>
+          {hasMoreItems && (
+            <div className={styles.viewMoreContainer}>
+              <button
+                type="button"
+                className={styles.viewMoreButton}
+                onClick={() =>
+                  setShowAllItems(
+                    (previous) => !previous
+                  )
+                }
+              >
+                {showAllItems
+                  ? "View Less ↑"
+                  : "View More ↓"}
+              </button>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };

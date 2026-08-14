@@ -1,43 +1,241 @@
 /* =========================================================
-   VEG / NON-VEG TOGGLE
+   PREFERENCE SECTION
 ========================================================= */
 
-.preferenceContainer {
-  display: flex;
+.preferenceSection {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 25px 35px;
+  box-sizing: border-box;
+}
 
-  align-items: center;
-  justify-content: center;
+/* =========================================================
+   SUBSCRIPTION PLAN SECTION
+========================================================= */
 
-  gap: 0;
+.subscriptionPlanSection {
+  width: 100%;
 
-  margin: 0;
-  padding: 0;
+  background-color: #ffffff;
 
   box-sizing: border-box;
 }
 
 
 /* =========================================================
-   BUTTON
+   SUBSCRIPTION PLAN BANNER
 ========================================================= */
 
-.preferenceButton {
-  min-width: 110px;
-  height: 32px;
+.subscriptionPlanBanner {
+  width: 100%;
+  max-width: 1100px;
 
-  padding: 5px 15px;
+  height: 220px;
 
-  border: 1px solid #E8EEE0;
-  outline: none;
+  margin: 0 auto;
 
-  background: #ffffff;
-  color: #000000;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 0 0 18px 18px;
+}
+
+
+/* =========================================================
+   BANNER OVERLAY
+========================================================= */
+
+.subscriptionPlanBanner::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+}
+
+
+/* =========================================================
+   SUBSCRIPTION PLAN TITLE
+========================================================= */
+
+.subscriptionPlanTitle {
+  position: relative;
+
+  z-index: 1;
+
+  margin: 0;
+
+  color: #000;
+
+  font-size: 42px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.subscriptionPlanTitle span {
+  color: #95d93c;
+
+  margin-left: 8px;
+}
+
+
+/* =========================================================
+   PREFERENCE SECTION
+========================================================= */
+
+.subscriptionPreferences {
+  width: 100%;
+
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  padding: 30px 25px 35px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PREFERENCE HEADING
+========================================================= */
+
+.preferenceHeading {
+  margin: 0 0 25px;
+
+  text-align: center;
+
+  color: #333333;
+
+  font-size: 24px;
+
+  line-height: 1.4;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   PREFERENCE GROUP CONTAINER
+========================================================= */
+
+.preferenceGroups {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 70px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   INDIVIDUAL PREFERENCE GROUP
+========================================================= */
+
+.preferenceGroup {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  min-width: 340px;
+}
+
+
+/* =========================================================
+   PREFERENCE TITLE
+========================================================= */
+
+.preferenceTitle {
+  color: #333333;
+
+  font-size: 15px;
+
+  line-height: 1.4;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   REQUIRED STAR
+========================================================= */
+
+.requiredStar {
+  color: #ed1111;
+
+  margin-left: 3px;
+}
+
+
+/* =========================================================
+   OPTION CONTAINER
+========================================================= */
+
+.preferenceOptions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+/* =========================================================
+   PREFERENCE BUTTON
+========================================================= */
+
+.preferenceOption {
+  min-width: 100px;
+
+  height: 40px;
+
+  padding: 7px 18px;
+
+  border: 1px solid #dfe8d6;
+
+  background-color: #ffffff;
+
+  color: #333333;
 
   font-family: inherit;
-  font-size: 13px;
-  font-weight: 400;
+
+  font-size: 14px;
+
+  font-weight: 500;
 
   cursor: pointer;
+
+  outline: none;
 
   box-sizing: border-box;
 
@@ -48,42 +246,83 @@
 }
 
 
-/* ACTIVE */
+/* =========================================================
+   FIRST BUTTON
+========================================================= */
 
-.preferenceButtonActive {
-  background: #80B53B;
-  border: 1px solid #80B53B;
-  outline: none;
+.preferenceOption:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+
+/* =========================================================
+   LAST BUTTON
+========================================================= */
+
+.preferenceOption:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+
+/* =========================================================
+   ACTIVE BUTTON
+========================================================= */
+
+.preferenceOptionActive {
+  background-color: #80b53b;
+
+  border-color: #80b53b;
 
   color: #ffffff;
 }
 
 
-/* Remove browser focus black border */
-
-.preferenceButton:focus,
-.preferenceButton:focus-visible {
-  outline: none;
-}
-
-
-/* Keep green border when active + focused */
-
-.preferenceButtonActive:focus,
-.preferenceButtonActive:focus-visible {
-  outline: none;
-  border: 1px solid #80B53B;
-  box-shadow: none;
-}
-
 /* =========================================================
    HOVER
 ========================================================= */
 
-.preferenceButton:not(
-    .preferenceButtonActive
-  ):hover {
-  background: #f8fbf5;
+.preferenceOption:not(.preferenceOptionActive):hover {
+  background-color: #f8fbf5;
+
+  border-color: #80b53b;
+
+  color: #333333;
+}
+
+
+/* =========================================================
+   REMOVE DEFAULT FOCUS
+========================================================= */
+
+.preferenceOption:focus,
+.preferenceOption:focus-visible {
+  outline: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .subscriptionPlanBanner {
+    max-width: 100%;
+
+    height: 200px;
+
+    border-radius: 0;
+  }
+
+  .preferenceGroups {
+    gap: 35px;
+  }
+
+  .preferenceGroup {
+    min-width: 0;
+  }
 }
 
 
@@ -92,10 +331,270 @@
 ========================================================= */
 
 @media (max-width: 767px) {
-  .preferenceButton {
+
+  .subscriptionPreferences {
+    padding: 25px 15px 30px;
+  }
+
+  .subscriptionPlanBanner {
+    height: 160px;
+  }
+
+  .subscriptionPlanTitle {
+    font-size: 30px;
+  }
+
+  .preferenceHeading {
+    font-size: 20px;
+
+    margin-bottom: 20px;
+  }
+
+  .preferenceGroups {
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 22px;
+  }
+
+  .preferenceGroup {
+    width: 100%;
+
+    min-width: 0;
+
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .preferenceTitle {
+    font-size: 14px;
+  }
+
+  .preferenceOptions {
+    width: auto;
+  }
+
+  .preferenceOption {
     min-width: 100px;
 
-    height: 32px;
+    height: 38px;
+
+    font-size: 13px;
+  }
+}
+/* =========================================================
+   SELECT YOUR PREFERENCE HEADING
+========================================================= */
+
+.preferenceHeading {
+  margin: 0 0 22px;
+  text-align: center;
+
+  color: #333333;
+
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   PREFERENCE GROUPS
+========================================================= */
+
+.preferenceGroups {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 55px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   INDIVIDUAL PREFERENCE GROUP
+========================================================= */
+
+.preferenceGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+}
+
+
+/* =========================================================
+   PREFERENCE TITLE
+========================================================= */
+
+.preferenceTitle {
+  color: #333333;
+
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* REQUIRED STAR
+========================================================= */
+
+.requiredStar {
+  color: #ed1111;
+
+  margin-left: 3px;
+}
+
+
+/* =========================================================
+   OPTION CONTAINER
+========================================================= */
+
+.preferenceOptions {
+  display: flex;
+  align-items: center;
+
+  gap: 0;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   PREFERENCE BUTTON
+========================================================= */
+
+.preferenceOption {
+  min-width: 100px;
+  height: 38px;
+
+  padding: 7px 18px;
+
+  border: 1px solid #e8eee0;
+
+  background-color: #ffffff;
+
+  color: #333333;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* =========================================================
+   FIRST BUTTON
+========================================================= */
+
+.preferenceOption:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+
+/* =========================================================
+   LAST BUTTON
+========================================================= */
+
+.preferenceOption:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+
+/* =========================================================
+   ACTIVE BUTTON
+========================================================= */
+
+.preferenceOptionActive {
+  background-color: #80b53b;
+
+  border-color: #80b53b;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.preferenceOption:not(.preferenceOptionActive):hover {
+  background-color: #f8fbf5;
+
+  border-color: #80b53b;
+
+  color: #333333;
+}
+
+
+/* =========================================================
+   REMOVE DEFAULT FOCUS BORDER
+========================================================= */
+
+.preferenceOption:focus,
+.preferenceOption:focus-visible {
+  outline: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  .preferenceSection {
+    padding: 0 15px 25px;
+  }
+
+  .preferenceHeading {
+    font-size: 20px;
+
+    margin-bottom: 18px;
+  }
+
+  .preferenceGroups {
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+  }
+
+  .preferenceGroup {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .preferenceTitle {
+    font-size: 14px;
+  }
+
+  .preferenceOption {
+    min-width: 100px;
+
+    height: 38px;
 
     font-size: 13px;
   }
