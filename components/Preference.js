@@ -4,6 +4,7 @@ import MealContainer from "./MealContainer";
 import packageStyle from "../styles/MealContainer.module.css";
 import PreferenceComponent from "../components/PreferenceComponent";
 import timeSelectionStyles from "../styles/TimeSelection.module.css";
+import Subciption from "./Subcription"
 
 const Preference = () => {
 
@@ -32,6 +33,17 @@ const Preference = () => {
   const [error, setError] = useState(null);
 
   const [filterdItems, setFilteredItems] = useState([]);
+
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+const [userDetails, setUserDetails] = useState({
+  name: "",
+  phone: "",
+  email: "",
+  address: "",
+});
+
+const [paymentLoading, setPaymentLoading] = useState(false);
 
   useEffect(() => {
     const fetchPreferenceData = async () => {
@@ -165,6 +177,15 @@ const Preference = () => {
     }
   };
 
+  const selectedPlanHandler = (plan) => {
+  setSelectedPlan(plan);
+
+  setUserPackageData((prev) => ({
+    ...prev,
+    selectedPlan: plan,
+  }));
+};
+
   const onCheckedPress = (mealItem) => {
     if (!mealItem) {
       return;
@@ -196,6 +217,52 @@ const Preference = () => {
   };
 
   const mealData = filterdItems;
+const subscriptionPlanData = (value?.data?.subscriptionPlans || []).map((plan) => {
+  const meals = [
+    ...userPackageData.lunchPackage,
+    ...userPackageData.dinnerPackage,
+  ];
+
+  const finalPrice = meals.reduce((total, item) => {
+    const selected = item.mealItem?.subscription_type?.find(
+      (sub) => Number(sub.days) === Number(plan.days)
+    );
+
+    return total + Number(selected?.final_price || 0);
+  }, 0);
+
+  return {
+    ...plan,
+    duration: plan.days,
+    final_price: finalPrice,
+    discount: plan.discountPercent || 0,
+  };
+});
+
+const getMealPrice = (meal, days) => {
+  const plan = meal?.subscription_type?.find(
+    (item) => Number(item.days) === Number(days)
+  );
+
+  return Number(plan?.final_price || 0);
+};
+const selectedMeals = [
+  ...userPackageData.lunchPackage.map((item) => item.mealItem),
+  ...userPackageData.dinnerPackage.map((item) => item.mealItem),
+];
+const totalPrice = selectedPlan
+  ? selectedMeals.reduce(
+      (total, meal) => total + getMealPrice(meal, selectedPlan.days),
+      0
+    )
+  : 0;
+
+const updateUserDetail = (field, value) => {
+  setUserDetails((prev) => ({
+    ...prev,
+    [field]: value,
+  }));
+};
 
   if (loading) {
     return (
@@ -309,6 +376,15 @@ const Preference = () => {
           loading={loading}
           error={error}
         />
+        {userPackageData.lunchPackage.length > 0 &&
+       userPackageData.dinnerPackage.length > 0 && (
+    <Subciption
+      subscriptionPlanData={subscriptionPlanData}
+      selectedPlan={selectedPlan}
+      selectedPlanHandler={selectedPlanHandler}
+      userPackageData={userPackageData}
+    />
+  )}
       </section>
     </div>
   );

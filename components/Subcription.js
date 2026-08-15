@@ -83,45 +83,48 @@ export default function Subscription({
     // console.log("here is supscription", subscriptionPlanData);
   }, [subscriptionPlanData]);
 
-  const createOrder = async (userData) => {
-    const { tempLPIds, tempDPIds } = calcSubscriptionIds(userData);
-    try {
-      const raw = {
-        name: userData.name,
-        email_address: userData.email,
-        mobile_number: userData.phone,
-        device_type: 2,
-        address: userData.address,
-        location: userData.city,
-        notes: "hello",
-        pincode: userData.pincode,
-        delivery_date: userData.deliveryDate,
-        lunch_subscription_type: tempLPIds,
-        dinner_subscription_type: tempDPIds,
-      };
+const createOrder = async (userData) => {
+  const { tempLPIds, tempDPIds } = calcSubscriptionIds(userData);
 
-      const response = await axios.post(
-        `${DEV_BASE_URL}toneopeats_createorder_webapi`,
-        raw,
-        {
-          headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.data.status) {
-        console.log("response create order", response);
-        setRazorResponse(response);
-        return response.data.data;
-      } else {
-        alert(response.data.message);
-        setUserData(INITIAL_USER_DETAIL);
+  try {
+    const raw = {
+      name: userData.name,
+      email_address: userData.email,
+      mobile_number: userData.phone,
+      device_type: 2,
+      address: userData.address,
+      location: userData.city,
+      notes: "hello",
+      pincode: userData.pincode,
+      delivery_date: userData.deliveryDate,
+      lunch_subscription_type: tempLPIds,
+      dinner_subscription_type: tempDPIds,
+    };
+
+    const response = await axios.post(
+      "http://localhost:5000/api/payment/create-order",
+      raw,
+      {
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
       }
-    } catch (error) {
-      alert(error.message);
+    );
+
+    if (response.data.success) {
+      console.log("response create order", response);
+      setRazorResponse(response);
+      return response.data.data;
     }
-  };
+
+    alert(response.data.message || "Unable to create order");
+    setUserData(INITIAL_USER_DETAIL);
+  } catch (error) {
+    console.error("Create order error:", error);
+    alert(error.response?.data?.message || error.message);
+  }
+};
 
   const paymentSucces = async (res, order) => {
     console.log("order detail response", res);
@@ -158,7 +161,7 @@ export default function Subscription({
     if (order) {
       const options = {
         // key: "rzp_live_uLNoH04nQM0zC8",
-        key: "rzp_test_sVMGsI8ewSS12A",
+        key: "rzp_test_TPytafRt9qSZZp",
         amount: parseInt(order.amount) * 100,
         currency: "INR",
         name: "Toneop",
@@ -405,7 +408,7 @@ export default function Subscription({
     <div className={styles.container}>
       <div className={styles.scrollContainer}>
         {subscriptionPlanData.map((item) => (
-          <div key={item.id}>{renderItem(item, selectedPlan.id)}</div>
+          <div key={item.id}>{renderItem(item, selectedPlan?.id)}</div>
         ))}
       </div>
       <div
@@ -426,12 +429,6 @@ export default function Subscription({
         show={congratulationModal.visible}
         onHide={closeModalCongratulation}
       >
-        {/* <Modal.Title style={{ color: "#80B53B", textAlign: "center" }}>
-          Congratulation
-        </Modal.Title> */}
-        {/* <Modal.Header style={{ color: "#80B53B", marginLeft: "25%" }}>
-          Orderd Created Sucessfully
-        </Modal.Header> */}
         <div
           style={{ display: "flex", justifyContent: "center", padding: "10px" }}
         >
