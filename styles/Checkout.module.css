@@ -1,0 +1,274 @@
+.page {
+    min-height: 100vh;
+    background: #f5f5f3;
+    padding: 45px 20px 60px;
+    box-sizing: border-box;
+    color: #222
+}
+
+.checkoutCard {
+    max-width: 1050px;
+    margin: 25px auto;
+    display: grid;
+    grid-template-columns: 1.5fr .8fr;
+    gap: 24px;
+    align-items: start
+}
+
+.formSection,
+.summarySection {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    box-sizing: border-box
+}
+
+.formSection {
+    padding: 30px
+}
+
+.summarySection {
+    padding: 24px;
+    position: sticky;
+    top: 20px;
+    background: #fafcf7
+}
+
+.backBtn {
+    border: 0;
+    background: none;
+    padding: 0;
+    margin: 0 0 25px;
+    color: #555;
+    font-size: 14px;
+    cursor: pointer
+}
+
+.formSection h1 {
+    font-size: 30px;
+    margin: 0 0 5px;
+    font-weight: 600
+}
+
+.subtitle {
+    margin: 0 0 25px;
+    color: #777;
+    font-size: 14px
+}
+
+.sectionTitle {
+    font-size: 18px;
+    margin: 0 0 18px;
+    font-weight: 600
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+}
+
+.field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #d8d8d8;
+    border-radius: 7px;
+    padding: 11px 12px;
+    font-size: 14px;
+    background: #fff;
+    color: #222;
+    outline: none
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #80b53b
+}
+
+.field textarea {
+    min-height: 90px;
+    resize: vertical
+}
+
+.full {
+    grid-column: 1/-1
+}
+
+.error {
+    margin-top: 12px;
+    color: #d33;
+    font-size: 13px
+}
+
+.summarySection h2 {
+    font-size: 22px;
+    margin: 0 0 22px;
+    font-weight: 600
+}
+
+.plan {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding-bottom: 20px
+}
+
+.plan h3 {
+    margin: 0 0 5px;
+    font-size: 19px;
+    font-weight: 600
+}
+
+.plan p {
+    margin: 0;
+    color: #777;
+    font-size: 13px
+}
+
+.plan strong {
+    font-size: 18px;
+    white-space: nowrap
+}
+
+.divider {
+    height: 1px;
+    background: #ddd
+}
+
+.priceRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    font-size: 14px
+}
+
+.priceRow span {
+    color: #555
+}
+
+.free {
+    color: #80b53b !important
+}
+
+.totalRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 0 5px;
+    font-size: 20px;
+    font-weight: 700
+}
+
+.payButton {
+    width: 100%;
+    margin-top: 20px;
+    padding: 13px;
+    border: 0;
+    border-radius: 7px;
+    background: #80b53b;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer
+}
+
+.payButton:hover {
+    background: #6fa832
+}
+
+.payButton:disabled {
+    opacity: .6;
+    cursor: not-allowed
+}
+
+.successCard {
+    max-width: 600px;
+    margin: 70px auto;
+    padding: 35px;
+    background: #fff;
+    border-radius: 15px;
+    text-align: center
+}
+
+.successIcon {
+    width: 60px;
+    height: 60px;
+    margin: auto;
+    background: #80b53b;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px
+}
+
+.successSummary {
+    margin: 25px 0;
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 8px
+}
+
+.successSummary div {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 16px;
+    border-bottom: 1px solid #eee
+}
+
+.successSummary div:last-child {
+    border-bottom: 0
+}
+
+.continueBtn {
+    border: 0;
+    background: #80b53b;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 7px;
+    cursor: pointer
+}
+
+@media(max-width:800px) {
+    .page {
+        padding: 20px 12px 40px
+    }
+
+    .checkoutCard {
+        grid-template-columns: 1fr;
+        margin: 10px auto
+    }
+
+    .formSection,
+    .summarySection {
+        padding: 22px
+    }
+
+    .summarySection {
+        position: static;
+        order: -1
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr
+    }
+
+    .full {
+        grid-column: auto
+    }
+}

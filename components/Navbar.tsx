@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Navbar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebookF,
   faInstagram,
@@ -11,6 +12,7 @@ import {
 import Link from "next/link";
 import Contact from "./Contact";
 import { useRouter } from "next/router";
+import icon from "../components/assets/meal_icon.png"
 
 type Props = {};
 
@@ -44,11 +46,11 @@ const Navbar = (props: Props) => {
       <div className="prZero">
         <div className="topBar">
           <ul className={styles.topUl} style={{ listStyleType: "none" }}>
-            <li className={styles.topliLeft}>
-              <Link className={styles.logoText} href="/">
-                <img src="https://toneopeats.com/public/img/logo.png?v=1" />
-              </Link>
-            </li>
+           <li className={styles.topliLeft}>
+  <Link className={styles.logoText} href="/">
+    <img src={icon.src} alt="Toneop Eats" />
+  </Link>
+</li>
 
             <li className={styles.TopliMid}>
               <Link href="/">
@@ -57,12 +59,6 @@ const Navbar = (props: Props) => {
                   style={{
                     color: selectedLink === "link1" ? "#80B53B " : "black",
                   }}
-                  // className={selectedLink === "link1" ? styles.active : ""}
-                  // className={
-                  //   selectedLink === "link1"
-                  //     ? styles.greencolor
-                  //     : styles.blackcolor
-                  // }
                 >
                   Meal Subscription Plans
                 </div>
@@ -73,12 +69,6 @@ const Navbar = (props: Props) => {
                   style={{
                     color: selectedLink === "link2" ? "#80B53B " : "black",
                   }}
-                  // className={selectedLink === "link2" ? styles.active : ""}
-                  // className={
-                  //   selectedLink === "link2"
-                  //     ? styles.greencolor
-                  //     : styles.blackcolor
-                  // }
                 >
                   Menu
                 </div>
@@ -91,7 +81,7 @@ const Navbar = (props: Props) => {
                 className={styles.menuRight}
                 style={{ width: openNav ? "100%" : "0%" }}
               >
-                <img src="https://toneopeats.com/public/img/iconmenu.svg" />
+                <FontAwesomeIcon icon={faBars} />
               </span>
             </li>
           </ul>
