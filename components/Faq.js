@@ -5,12 +5,12 @@ const faqData = [
   {
     question: "How does it work?",
     answer:
-      "ToneOpEats is a subscription model that offers healthy meals for lunch and dinner, as per your preference. To start with the ToneopEats plan, visit toneopeats.com and take a subscription plan. Then, choose the meal type and complete the payment.",
+      "MealFlow is a subscription model that offers healthy meals for lunch and dinner, as per your preference. To start with the MealFlow plan, visit MealFlow.com and take a subscription plan. Then, choose the meal type and complete the payment.",
   },
   {
-    question: "Is ToneopEats is a subscription meal service?",
+    question: "Is MealFlow is a subscription meal service?",
     answer:
-      "ToneOpEats provides you with 2 options. Subscription plans 3,7,14, and 30 days for one-time orders and Ala kart options to choose and try individual items from the menu.",
+      "MealFlow provides you with 2 options. Subscription plans 3,7,14, and 30 days for one-time orders and Ala kart options to choose and try individual items from the menu.",
   },
   {
     question: "What if i want a weekly subscription?",
@@ -20,14 +20,14 @@ const faqData = [
   {
     question: "How do i order/recive my meal?",
     answer:
-      "To start with the ToneopEats plan, visit toneopeats.com and take a subscription plan. Choose the meal type and complete the payment. Your plan will get activated from the next day of subscribing. You may also order from Ala Kart/Swiggy/Zomato for one-time delivery.",
+      "To start with the MealFlow plan, visit MealFlow.com and take a subscription plan. Choose the meal type and complete the payment. Your plan will get activated from the next day of subscribing. You may also order from Ala Kart/Swiggy/Zomato for one-time delivery.",
   },
   {
     question: "Do i get choose my meals?",
     answer: "Yes, you can choose your meals.",
   },
   {
-    question: "How ToneopEats help to reduce weight?",
+    question: "How MealFlow help to reduce weight?",
     answer:
       "Our meals are prepared with low fat and low calorie ingredients. We use only olive oil and strictly avoid any added sugars or preservatives. These meals provide you all the essential nutrients and keep you full for longer.",
   },
@@ -47,7 +47,7 @@ const faqSecond = [
   {
     question: "What are the price range of meals?",
     answer:
-      "The subscription plan starts from Rs. 225 for 3 days. For more info, please visit-https://toneopeats.com/.",
+      "The subscription plan starts from Rs. 225 for 3 days. For more info, please visit-https://MealFlow.com/.",
   },
   {
     question: "Where is delivery available?",
@@ -57,7 +57,7 @@ const faqSecond = [
   {
     question: "How much does delivery costs",
     answer:
-      "ToneOpEats provides free delivery for all subscription plans. However, if you order through Ala Kart/Swiggy/Zomato, the delivery is charged per their respective policy.",
+      "MealFlow provides free delivery for all subscription plans. However, if you order through Ala Kart/Swiggy/Zomato, the delivery is charged per their respective policy.",
   },
   {
     question: "How long does it take for you to deliver my meal after payment?",
@@ -67,7 +67,7 @@ const faqSecond = [
   {
     question: "What if I need to cancel my order?",
     answer:
-      "To cancel your subscription, please notify ToneOpEats 7 days in advance. The subscription amount will be refunded within 7-10 working days.",
+      "To cancel your subscription, please notify MealFlow 7 days in advance. The subscription amount will be refunded within 7-10 working days.",
   },
   {
     question: "Do you have dairy-free meals?",
@@ -111,7 +111,7 @@ const Faq = () => {
           good and stay healthy!
         </h4>
         <p className={styles.text23}>
-          ToneOpEats brings the bowl of health & fitness to your doorstep to
+          MealFlow brings the bowl of health & fitness to your doorstep to
           make you reach the healthier self you envisioned.
         </p>
       </div>

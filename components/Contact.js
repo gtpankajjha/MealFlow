@@ -6,11 +6,11 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const Contact = () => {
   const handleWhatsAppClick = () => {
-    window.open(`https://api.whatsapp.com/send?phone=${7710116627}`);
+    window.open(`https://api.whatsapp.com/send?phone=${70000000000}`);
   };
 
   const handleDialerClick = () => {
-    window.open(`tel:${7400989898}`);
+    window.open(`tel:${70000000000}`);
   };
 
   return (

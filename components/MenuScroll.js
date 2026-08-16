@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import styles from "../styles/MenuScroll.module.css";
 import API_URL from "./useApi";
 import "swiper/swiper-bundle.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
-
 
 const IMAGE_URL =
   "https://toneop.s3.ap-south-1.amazonaws.com/";
@@ -21,30 +18,13 @@ const MenuScroll = () => {
       try {
         setLoading(true);
 
-        const response = await fetch(API_URL);
+        const response = await fetch(`${API_URL}/api/menu`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch menu");
         }
 
         const json = await response.json();
-
-        /*
-         * API response:
-         *
-         * {
-         *   success: true,
-         *   count: ...,
-         *   data: [
-         *     {
-         *       id: 15,
-         *       name: "...",
-         *       image: "...",
-         *       food: [...]
-         *     }
-         *   ]
-         * }
-         */
 
         const menuData = json.data || [];
 
@@ -66,13 +46,6 @@ const MenuScroll = () => {
             };
           })
         );
-
-        /*
-         * Only show items which have an image.
-         *
-         * This prevents blank carousel cards if some
-         * food records don't have images yet.
-         */
         const validFoodItems = foodItems.filter(
           (item) => item.src
         );
