@@ -1,5 +1,8 @@
 import React from "react";
 import styles from "../styles/Navbar.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const Contact = () => {
   const handleWhatsAppClick = () => {
@@ -18,10 +21,7 @@ const Contact = () => {
           onClick={handleDialerClick}
           style={{ outline: "none" }}
         >
-          <img
-            style={{ height: "20px", width: "20px" }}
-            src="https://toneopeats.com/public/img/call.svg"
-          />
+          <FontAwesomeIcon icon={faPhone} />
         </button>
         <button
           style={{
@@ -36,10 +36,7 @@ const Contact = () => {
           }}
           onClick={handleWhatsAppClick}
         >
-          <img
-            style={{ height: "35px", width: "35px" }}
-            src="https://toneopeats.com/public/img/whatsapp.png"
-          />
+            <FontAwesomeIcon icon={faWhatsapp} />
         </button>
       </div>
     </div>
