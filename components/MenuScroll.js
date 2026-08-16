@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "../styles/MenuScroll.module.css";
-
+import API_URL from "./useApi";
 import "swiper/swiper-bundle.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const API_URL = "http://localhost:5000/api/menu";
+
 
 const IMAGE_URL =
   "https://toneop.s3.ap-south-1.amazonaws.com/";
