@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "../styles/Bannerstatic.module.css";
 
 const testimonialData = [
   {
@@ -18,43 +17,40 @@ const testimonialData = [
 
 const TestimonialSection = () => {
   return (
-    <section
-      className={styles.sm_section}
-      style={{ backgroundColor: "#F8FBF5" }}
-    >
+    <section className="py-[70px] text-center mb-[60px] mt-[60px] bg-[#F8FBF5] dark:bg-mealflow-dark">
       <div>
-        <div>
-          <h2 className={styles.h2}>
-            Testimonial<span style={{ color: "#80B53B" }}> #healthysmiles</span>
-          </h2>
-        </div>
+        <h2 className="text-mealflow-text dark:text-mealflow-white">
+          Testimonial
+          <span className="text-[#80B53B]"> #healthysmiles</span>
+        </h2>
+
         <br />
         <br />
-        <div>
-          <div className={styles.swiper_wrapper}>
-            <div className={styles.swiper_slide}>
-              <div
-                className={styles.display_container}
-                style={{ overflowX: "auto" }}
-              >
-                {testimonialData.map((testimonial, index) => (
-                  <div key={index} className={styles.display_container}>
-                    <div>
-                      <img
-                        src={testimonial.image}
-                        className={styles.test_image}
-                        alt={`User ${index + 1}`}
-                      />
-                    </div>
-                    <div>
-                      <p className={styles.para}>{testimonial.description}</p>
-                      <p className={styles.name}>
-                        <b>{testimonial.name}</b>
-                      </p>
-                    </div>
+
+        <div className="relative w-full h-full z-[1] flex box-content">
+          <div className="shrink-0 w-full h-full relative">
+            <div className="flex flex-row justify-evenly overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {testimonialData.map((testimonial, index) => (
+                <div key={index} className="flex flex-row justify-evenly shrink-0">
+                  <div>
+                    <img
+                      src={testimonial.image}
+                      className="h-[270px] w-full p-[5%] object-cover"
+                      alt={`User ${index + 1}`}
+                    />
                   </div>
-                ))}
-              </div>
+
+                  <div>
+                    <p className="relative left-[35px] w-[200px] text-left text-[#3A3A3A] dark:text-mealflow-mutedDark mt-[12%]">
+                      {testimonial.description}
+                    </p>
+
+                    <p className="relative w-[200px] text-mealflow-text dark:text-mealflow-white">
+                      <b>{testimonial.name}</b>
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

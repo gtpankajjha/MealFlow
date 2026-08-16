@@ -1,21 +1,14 @@
-// import { API_URL, DEV_API_VERSION } from "@/constants";
 import nmsLeft from "./assets/nms_left.png";
 import nmsRight from "./assets/nms_right.png";
 import Image from "next/image";
 import * as React from "react";
-import styles from "../styles/Bannerstatic.module.css";
 import ReactModal from "react-modal";
-
-// import { SnackbarContext } from "@/context/snackbarContext";
 
 export const API_URL = "https://dev.dashboard.toneop.net/";
 export const IMAGE_DOMAIN = "https://toneop.s3.ap-south-1.amazonaws.com/";
 export const DEV_API_VERSION = "v4";
-const {
-  useState,
-  useRef,
-  //  useContext
-} = React;
+
+const { useState, useRef } = React;
 
 ReactModal.setAppElement("#__next");
 
@@ -42,7 +35,7 @@ const BannerForm = ({
   const isFormEnabled = name && mobileNumber && mobileNumber.length === 10;
 
   const onMobileNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const targetValue: string = e.target?.value;
+    const targetValue = e.target?.value;
     const numValue = targetValue.replace(/\D/g, "");
     setMobileNumber(numValue);
   };
@@ -50,6 +43,7 @@ const BannerForm = ({
   const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const targetValue = e.target.value;
     const regex = /^[a-zA-Z ]*$/;
+
     if (regex.test(targetValue)) {
       setName(targetValue);
     }
@@ -67,6 +61,7 @@ const BannerForm = ({
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
     if (mobileNumber.length < 10) {
       alert("Enter a valid mobile number");
       setMobileNumber("");
@@ -75,10 +70,12 @@ const BannerForm = ({
       return;
     } else {
       setIsLoading(true);
+
       const params = {
         username: name,
         mobile_number: mobileNumber,
       };
+
       try {
         const response = await fetch(
           API_URL + "api/" + DEV_API_VERSION + "/call_request_form_web",
@@ -88,6 +85,7 @@ const BannerForm = ({
             body: JSON.stringify(params),
           }
         );
+
         if (response.ok && response.status === 201) {
           if (submittingFrom === "banner") {
             setIsThanksModalOpen(true);
@@ -103,6 +101,7 @@ const BannerForm = ({
         if (submittingFrom === "buy_now") {
           closeBannerHandler?.();
         }
+
         setIsLoading(false);
         bannerFormRef.current?.reset();
         setName("");
@@ -113,10 +112,11 @@ const BannerForm = ({
 
   return (
     <>
+      {/* THANK YOU MODAL */}
       <ReactModal
         isOpen={isThanksModalOpen}
         closeTimeoutMS={300}
-        className="container-2xl w-3/4 duration-300 ease-in-out"
+        className="w-[90%] max-w-5xl outline-none"
         style={{
           overlay: {
             zIndex: 1000,
@@ -126,15 +126,14 @@ const BannerForm = ({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#ffffff",
+            backgroundColor: "rgba(15,23,42,0.65)",
+            padding: "20px",
           },
         }}
-        onRequestClose={() => {
-          setIsThanksModalOpen(false);
-        }}
+        onRequestClose={() => setIsThanksModalOpen(false)}
       >
-        <div className={styles.modal_a}>
-          <div>
+        <div className="flex flex-row items-center justify-between overflow-hidden rounded-2xl bg-[#CCFD7F] dark:bg-mealflow-darkCard shadow-2xl">
+          <div className="shrink-0">
             <Image
               quality={100}
               placeholder="blur"
@@ -143,31 +142,33 @@ const BannerForm = ({
               width={160}
               alt="Nutrition made simple left"
               aria-label="Nutrition made simple left"
+              className="max-w-full object-contain"
             />
           </div>
-          <div className={styles.modal_b}>
-            <section>
-              <p className={styles.modal_text}>THANKS FOR SUBMITTING!</p>
-            </section>
-            <section>
-              <p className={styles.modal_text}>
-                Your submission has been received.
-              </p>
-              <p className={styles.modal_text}>
-                Our health coaches will be in touch and contact you soon.
-              </p>
-            </section>
+
+          <div className="flex flex-col items-start justify-center px-4 py-6 sm:px-8 sm:py-10">
+            <p className="text-lg font-semibold text-mealflow-text dark:text-mealflow-white">
+              THANKS FOR SUBMITTING!
+            </p>
+
+            <p className="mt-3 text-base text-mealflow-text dark:text-mealflow-mutedDark">
+              Your submission has been received.
+            </p>
+
+            <p className="mt-1 text-base text-mealflow-text dark:text-mealflow-mutedDark">
+              Our health coaches will be in touch and contact you soon.
+            </p>
+
             <button
-              onClick={() => {
-                setIsThanksModalOpen(false);
-              }}
-              className={styles.modal_button}
-              style={{ outline: "none" }}
+              type="button"
+              onClick={() => setIsThanksModalOpen(false)}
+              className="mt-5 h-10 w-[100px] rounded-[7px] border-0 bg-mealflow-orange text-white outline-none transition hover:brightness-95"
             >
               Close
             </button>
           </div>
-          <div>
+
+          <div className="shrink-0">
             <Image
               quality={100}
               placeholder="blur"
@@ -176,46 +177,47 @@ const BannerForm = ({
               width={220}
               alt="Nutrition made simple right image"
               aria-label="Nutrition made simple right image"
+              className="max-w-full object-contain"
             />
           </div>
         </div>
       </ReactModal>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "5%",
-        }}
-      >
+
+      {/* BANNER FORM */}
+      <div className="mt-[5%] flex justify-center px-4">
         <form
           id="call_request_form_web_banner"
           ref={bannerFormRef}
-          className={styles.form_container}
           onSubmit={submitHandler}
+          className="w-[90%] min-[768px]:w-[60%] rounded-[10px] border border-mealflow-border bg-[#F8FBF5] p-4 shadow-sm dark:border-mealflow-borderDark dark:bg-mealflow-darkCard"
         >
-          <div className={styles.modal_row}>
-            <div>
+          <div className="flex flex-row items-center justify-between gap-2">
+            {/* LEFT IMAGE */}
+            <div className="hidden min-[768px]:block shrink-0">
               <Image
                 quality={100}
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNctGRVPQAGUQJxq5R/oQAAAABJRU5ErkJggg=="
                 src={nmsLeft}
                 width={100}
-                className={styles.form_image2}
                 alt="Nutrition made simple left"
                 aria-label="Nutrition made simple left"
+                className="h-[200px] w-[150px] object-contain"
               />
             </div>
-            <div
-              style={{
-                alignSelf: "center",
-              }}
-            >
-              <div className={styles.form_a}>
-                <div className={styles.form_b}>
-                  <label htmlFor="userName" className={styles.form_lable}>
-                    Name <span style={{ color: "red" }}>*</span>
+
+            {/* FORM CONTENT */}
+            <div className="flex-1 self-center">
+              <div className="flex w-full flex-col justify-around gap-2 min-[768px]:flex-row">
+                {/* NAME */}
+                <div className="mb-4 flex flex-col">
+                  <label
+                    htmlFor="userName"
+                    className="text-[18px] font-medium text-mealflow-text dark:text-mealflow-white"
+                  >
+                    Name <span className="text-red-600">*</span>
                   </label>
+
                   <input
                     type="text"
                     ref={nameRef}
@@ -224,63 +226,66 @@ const BannerForm = ({
                     pattern="[A-Za-z ]+"
                     title="Please enter letters and spaces only"
                     minLength={4}
-                    className={styles.form_c}
                     name="userName"
                     onChange={onNameChange}
                     value={name}
                     maxLength={60}
                     placeholder="Your Name"
+                    className="mt-1 h-10 w-full rounded-lg border-0 bg-[#E9ECE9] px-3 text-sm text-mealflow-text outline-none transition focus:ring-2 focus:ring-mealflow-orange dark:bg-mealflow-navy dark:text-mealflow-white dark:placeholder:text-mealflow-mutedDark"
                   />
                 </div>
-                <div className={styles.form_d}>
-                  <label htmlFor="mobileNumber" className={styles.form_lable}>
-                    Number <span style={{ color: "red" }}>*</span>
+
+                {/* MOBILE */}
+                <div className="mb-4 flex flex-col min-[768px]:ml-5">
+                  <label
+                    htmlFor="mobileNumber"
+                    className="text-[18px] font-medium text-mealflow-text dark:text-mealflow-white"
+                  >
+                    Number <span className="text-red-600">*</span>
                   </label>
+
                   <input
                     type="tel"
                     required
                     onInvalid={handleNumberInvalid}
                     ref={numberRef}
-                    className={styles.form_c}
                     name="mobileNumber"
                     maxLength={10}
                     step="any"
-                    onPaste={(e) => {
-                      e.preventDefault();
-                    }}
+                    onPaste={(e) => e.preventDefault()}
                     value={mobileNumber}
                     placeholder="Mobile Number"
                     onChange={onMobileNumberChange}
+                    className="mt-1 h-10 w-full rounded-lg border-0 bg-[#E9ECE9] px-3 text-sm text-mealflow-text outline-none transition focus:ring-2 focus:ring-mealflow-orange dark:bg-mealflow-navy dark:text-mealflow-white dark:placeholder:text-mealflow-mutedDark"
                   />
                 </div>
               </div>
-              <div>
-                <button
-                  disabled={!isFormEnabled || isLoading}
-                  style={{
-                    backgroundColor: !isFormEnabled
-                      ? "rgb(111, 213, 101)"
-                      : "rgb(128, 181, 59)",
-                    outline: "none",
-                  }}
-                  className={styles.form_button}
-                  type="submit"
-                >
-                  {buttonText}
-                </button>
-              </div>
+
+              {/* SUBMIT */}
+              <button
+                disabled={!isFormEnabled || isLoading}
+                type="submit"
+                className={`mt-2 w-full rounded-lg border-0 p-2 text-[16px] font-semibold text-white outline-none transition-all duration-200 ${
+                  !isFormEnabled || isLoading
+                    ? "cursor-not-allowed bg-[#6FD565]"
+                    : "cursor-pointer bg-[#80B53B] hover:brightness-95"
+                }`}
+              >
+                {isLoading ? "Submitting..." : buttonText}
+              </button>
             </div>
 
-            <div>
+            {/* RIGHT IMAGE */}
+            <div className="hidden min-[768px]:block shrink-0">
               <Image
                 quality={100}
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNctGRVPQAGUQJxq5R/oQAAAABJRU5ErkJggg=="
                 src={nmsRight}
                 width={100}
-                className={styles.form_image}
                 alt="Nutrition made simple right image"
                 aria-label="Nutrition made simple right image"
+                className="h-[200px] w-[180px] object-cover"
               />
             </div>
           </div>
