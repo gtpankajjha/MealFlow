@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import useRazorpay from "react-razorpay";
-import styles from "../styles/Checkout.module.css"
+import styles from "../styles/Checkout.module.css";
+import API_URL from "./useApi";
 
-const API = "http://localhost:5000/api/payment/create-order";
+const API = `${API_URL}/api/payment/create-order`;
 const DEV_API = "https://dev.dashboard.toneop.net/toneopeats/";
 
 const INITIAL_USER = {

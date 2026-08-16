@@ -4,7 +4,9 @@ import MealContainer from "./MealContainer";
 import packageStyle from "../styles/MealContainer.module.css";
 import PreferenceComponent from "../components/PreferenceComponent";
 import timeSelectionStyles from "../styles/TimeSelection.module.css";
-import Subciption from "./Subcription"
+import Subciption from "./Subcription";
+import API_URL from "./useApi";
+
 
 const Preference = () => {
 
@@ -51,14 +53,11 @@ const [paymentLoading, setPaymentLoading] = useState(false);
         setLoading(true);
         setError(null);
 
-        const response = await fetch("http://localhost:5000/api/preference");
-
+        const response = await fetch(`${API_URL}/api/preference`);
         if (!response.ok) {
           throw new Error(`API request failed with status ${response.status}`);
         }
-
         const json = await response.json();
-        console.log("Preference API response:", json);
         setValue(json);
       } catch (err) {
         console.error("Preference API error:", err);
@@ -94,10 +93,7 @@ const [paymentLoading, setPaymentLoading] = useState(false);
     } else if (!mealDietSelectedItem.Veg && mealDietSelectedItem.NonVeg) {
       filteredMeals = allMeals.filter((item) => item.diet_preference === "Non-Veg");
     }
-
     setFilteredItems(filteredMeals);
-
-    console.log("Filtered meals:", filteredMeals);
   }, [value, mealDietSelectedItem.Veg, mealDietSelectedItem.NonVeg]);
 
   const prefrencehandler = (item) => {
@@ -107,7 +103,6 @@ const [paymentLoading, setPaymentLoading] = useState(false);
         Veg: true,
         NonVeg: false,
       }));
-
       return;
     }
 
@@ -117,7 +112,6 @@ const [paymentLoading, setPaymentLoading] = useState(false);
         Veg: false,
         NonVeg: true,
       }));
-
       return;
     }
 

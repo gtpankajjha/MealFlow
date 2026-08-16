@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/MenuScreen.module.css";
 import MenuItemDetails from "./MenuItemDetails";
-
+import API_URL from "./useApi";
 const IMAGE_URL =
   "https://toneop.s3.ap-south-1.amazonaws.com/";
 
@@ -19,10 +19,7 @@ const MenuScreen = () => {
     const fetchMenu = async () => {
       try {
         setLoading(true);
-
-        const response = await fetch(
-          "http://localhost:5000/api/menu"
-        );
+     const response = await fetch(`${API_URL}/api/menu`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch menu");
